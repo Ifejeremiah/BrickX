@@ -1,0 +1,50 @@
+.container-login {
+  height: 100vh;
+}
+
+.container-login .bold {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--primary-color-01);
+}
+
+.container-login .link {
+  color: var(--primary-color-01);
+}
+
+.container-login .control-form label {
+  font-weight: 600;
+}
+
+.container-login .control-form input:not(.form-submit) {
+  background: var(--ash-color-01);
+}
+
+.container-login .control-form input {
+  padding: 14px 20px;
+  border-radius: .5rem;
+}
+
+.container-login .control-form input[type="submit"]{
+  background: var(--primary-color-01);
+  color: #fff;
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 1.2px;
+  transition: .25s;
+}
+
+.container-login .control-form input[type="submit"]:hover {
+  transform: scale(.98);
+}
+
+.container-login .con-right,
+.container-login .img {
+  height: 100%;
+}
+
+.container-login .con-right .right {
+  max-width: 500px;
+  width: 96%;
+  margin: 0 auto;
+}
