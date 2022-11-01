@@ -4,11 +4,14 @@
 }
 
 .primary-btn {
+  display: inline-block;
   font-weight: 700;
   font-size: 1rem;
   letter-spacing: 1.2px;
   transition: 0.25s;
   color: #fff;
+  padding: 14px 20px;
+  border-radius: 0.5rem;
   background: var(--primary-color-01);
 }
 
