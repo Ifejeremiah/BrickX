@@ -1,15 +1,45 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import "./Login.css";
+import "./css/Login.css";
 
 function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const [message, setMsg] = useState("");
+
+  document.title = "BrickX - Login";
+
+  function validate(callback) {
+    if (!email || !password) {
+      setMsg("Fill in all fields");
+    } else {
+      callback();
+    }
+  }
+
+  function submit(evt) {
+    evt.preventDefault();
+
+    validate(() => {
+      setEmail("");
+      setPassword("");
+      console.log({ email, password });
+    });
+  }
+
   return (
     <div className="container-login d-flex flex-column flex-lg-row justify-content-center">
-      <div className="d-none d-lg-block col-lg-7">
+      <div className="d-none d-lg-block col-lg-7 position-relative">
         <div className="img">
           <img
             src="https://plus.unsplash.com/premium_photo-1663054710563-598f084bdd42?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1163&q=80"
             alt=""
           />
+        </div>
+        <div className="overlay"></div>
+        <div className="con-context">
+          <h2 className="logo">BrickX</h2>
         </div>
       </div>
 
@@ -21,29 +51,43 @@ function Login() {
               <p className="text-ash-color">Sign in to continue</p>
             </header>
 
-            <form className="py-4">
+            {message ? <p className="msg">{message}</p> : ""}
+
+            <form className="py-4" onSubmit={submit}>
               <div className="control-form mb-3">
-                <label htmlFor="username">Username:</label> <br />
+                <label htmlFor="email">Email:</label> <br />
                 <input
-                  type="text"
-                  name=""
-                  id="username"
-                  placeholder="Enter username"
+                  type="email"
+                  id="email"
+                  placeholder="Enter email"
+                  value={email}
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                    setMsg("");
+                  }}
                 />
               </div>
 
               <div className="control-form mb-4">
                 <label htmlFor="password">Password:</label> <br />
                 <input
-                  type="text"
-                  name=""
+                  type="password"
                   id="password"
                   placeholder="Enter password"
+                  value={password}
+                  onChange={(e) => {
+                    setPassword(e.target.value);
+                    setMsg("");
+                  }}
                 />
               </div>
 
               <div className="control-form">
-                <input type="submit" value={"Login"} className="form-submit" />
+                <input
+                  type="submit"
+                  value={"Login"}
+                  className="form-submit primary-btn"
+                />
               </div>
             </form>
             <p>

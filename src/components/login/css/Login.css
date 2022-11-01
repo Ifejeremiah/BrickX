@@ -1,0 +1,37 @@
+.container-login {
+  height: 100vh;
+}
+
+.container-login .con-right,
+.container-login .img {
+  height: 100%;
+}
+
+.container-login .overlay {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: rgb(0 0 0 / 56%);
+  top: 0;
+  left: 0;
+}
+
+.container-login .con-context {
+  position: absolute;
+  background: transparent;
+  color: #fff;
+  top: 10%;
+  left: 10%;
+}
+
+.container-login .con-context h2.logo {
+  font-size: 2.6rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.container-login .con-right .right {
+  max-width: 500px;
+  width: 96%;
+  margin: 0 auto;
+}

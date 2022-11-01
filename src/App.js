@@ -8,7 +8,6 @@ function App() {
   return (
     <Router>
       <div className="main-container">
-
         <Routes>
           <Route path="/" exact element={<>Home page</>} />
           <Route path="/login" element={<Login />} />
