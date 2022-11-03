@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import "./css/Login.css";
+import "./css/Login.sass";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -39,7 +39,7 @@ function Login() {
         </div>
         <div className="overlay"></div>
         <div className="con-context">
-          <h2 className="logo">BrickX</h2>
+          <h2 className="logo">BrickX.</h2>
         </div>
       </div>
 

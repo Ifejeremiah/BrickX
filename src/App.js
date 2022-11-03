@@ -1,5 +1,4 @@
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import "./App.css";
 
 import Login from "components/login/Login";
 import Register from "components/register/Register";

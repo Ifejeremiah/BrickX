@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import "./css/Register.css";
+import "./css/Register.sass";
 
 function Register() {
   const [firstName, setFirstName] = useState("");
@@ -8,6 +8,8 @@ function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
+  const [user1, setUser1] = useState(false);
+  const [user2, setUser2] = useState(false);
 
   const [message, setMsg] = useState("");
 
@@ -25,9 +27,10 @@ function Register() {
 
   function submit(evt) {
     evt.preventDefault();
-    validate(() =>
-      console.log({ firstName, lastName, email, password, password2 })
-    );
+    validate(() => {
+      console.log({ firstName, lastName, email, password, password2 });
+      console.log({ user1, user2 });
+    });
   }
 
   return (
@@ -96,7 +99,7 @@ function Register() {
           />
         </div>
 
-        <div className="control-form mb-5">
+        <div className="control-form mb-4">
           <label htmlFor="password2">Confirm Password:</label> <br />
           <input
             type="password"
@@ -108,6 +111,42 @@ function Register() {
               setMsg("");
             }}
           />
+        </div>
+
+        <div className="control-check">
+          <p className="label">User Type:</p>
+
+          <div className="d-flex align-items-center gap-4 my-4">
+            <div className="form-check form-switch">
+              <input
+                className="form-check-input"
+                type="checkbox"
+                id="user1"
+                checked={user1}
+                value={user1}
+                onChange={(e) => setUser1(e.currentTarget.checked)}
+                disabled={user2}
+              />
+              <label className="form-check-label" htmlFor="user1">
+                Contractor
+              </label>
+            </div>
+
+            <div className="form-check form-switch">
+              <input
+                className="form-check-input"
+                type="checkbox"
+                id="user2"
+                checked={user2}
+                value={user2}
+                onChange={(e) => setUser2(e.currentTarget.checked)}
+                disabled={user1}
+              />
+              <label className="form-check-label" htmlFor="user2">
+                Worker
+              </label>
+            </div>
+          </div>
         </div>
 
         <div className="control-form">
