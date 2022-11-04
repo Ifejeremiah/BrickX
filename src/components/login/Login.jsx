@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import "./css/Login.sass";
 
 function Login() {
@@ -7,25 +7,20 @@ function Login() {
   const [password, setPassword] = useState("");
 
   const [message, setMsg] = useState("");
+  const [query] = useSearchParams();
+  const navigate = useNavigate();
 
   document.title = "BrickX - Login";
 
   function validate(callback) {
     if (!email || !password) {
       setMsg("Fill in all fields");
-    } else {
-      callback();
-    }
+    } else callback();
   }
 
   function submit(evt) {
     evt.preventDefault();
-
-    validate(() => {
-      setEmail("");
-      setPassword("");
-      console.log({ email, password });
-    });
+    validate(() => navigate({ pathname: "/overview" }));
   }
 
   return (
@@ -52,6 +47,14 @@ function Login() {
             </header>
 
             {message ? <p className="msg">{message}</p> : ""}
+
+            {query.get("__lgn") === "vlan" && !message ? (
+              <div className="success-msg">
+                You are now registered and can login.
+              </div>
+            ) : (
+              ""
+            )}
 
             <form className="py-4" onSubmit={submit}>
               <div className="control-form mb-3">

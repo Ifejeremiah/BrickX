@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./css/Register.sass";
 
 function Register() {
@@ -15,22 +15,28 @@ function Register() {
 
   document.title = "BrickX - Create new account";
 
+  const navigate = useNavigate();
+
+  const check = user1 || user2;
+
   function validate(callback) {
-    if (!firstName || !lastName || !email || !password || !password2) {
+    if (
+      !firstName ||
+      !lastName ||
+      !email ||
+      !password ||
+      !password2 ||
+      !check
+    ) {
       setMsg("Fill in all fields");
     } else if (password !== password2) {
       setMsg("Passwords don't match");
-    } else {
-      callback();
-    }
+    } else callback();
   }
 
   function submit(evt) {
     evt.preventDefault();
-    validate(() => {
-      console.log({ firstName, lastName, email, password, password2 });
-      console.log({ user1, user2 });
-    });
+    validate(() => navigate({ pathname: "/login", search: "?__lgn=vlan" }));
   }
 
   return (
@@ -124,7 +130,10 @@ function Register() {
                 id="user1"
                 checked={user1}
                 value={user1}
-                onChange={(e) => setUser1(e.currentTarget.checked)}
+                onChange={(e) => {
+                  setUser1(e.currentTarget.checked);
+                  setMsg("");
+                }}
                 disabled={user2}
               />
               <label className="form-check-label" htmlFor="user1">
@@ -139,7 +148,10 @@ function Register() {
                 id="user2"
                 checked={user2}
                 value={user2}
-                onChange={(e) => setUser2(e.currentTarget.checked)}
+                onChange={(e) => {
+                  setUser2(e.currentTarget.checked);
+                  setMsg("");
+                }}
                 disabled={user1}
               />
               <label className="form-check-label" htmlFor="user2">
