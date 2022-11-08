@@ -11,11 +11,11 @@ function Template() {
       <Header />
 
       <div className="d-flex align-items-start">
-        <div className="col-2">
+        <div className="col-2 d-none d-lg-block">
           <Sidebar routes={routes} />
         </div>
 
-        <div className="col-10">
+        <div className="col-12 col-lg-10">
           <div
             className={`${s.overview_container} d-flex align-items-center justify-content-between`}
           >

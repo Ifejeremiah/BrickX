@@ -4,7 +4,7 @@ import s from "./css/Sidebar.module.sass";
 
 function Sidebar({ routes }) {
   return (
-    <div className={`${s.main_sidebar} d-none d-lg-block`}>
+    <div className={`${s.main_sidebar}`}>
       <div className="d-flex- align-items-center justify-content-center">
         <ul className="pt-5">
           {routes.map((route) => (

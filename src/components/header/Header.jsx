@@ -8,7 +8,7 @@ function Header() {
     <div className={`${s.header_container} mb-2`}>
       <div className="d-flex align-items-center justify-content-between px-lg-5 px-4 py-3">
         <div className="con-left">
-          <div className="left">
+          <div className="left d-block d-lg-none">
             <div className={`${s.con_sidebar_btn} d-flex`}>
               <i className="fa-solid fa-bars"></i>
             </div>

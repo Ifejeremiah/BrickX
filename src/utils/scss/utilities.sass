@@ -4,20 +4,6 @@
   color: rgb(126, 126, 126)
   font-weight: 500
 
-.primary-btn
-  display: inline-block
-  font-weight: 700
-  font-size: 1rem
-  letter-spacing: 1.2px
-  transition: 0.25s
-  color: #fff
-  padding: 14px 20px
-  border-radius: 0.5rem
-  background: $primary-color
-
-  &:hover
-    transform: scale(0.98)
-
 .control-form
   input
     padding: 14px 20px
@@ -49,3 +35,27 @@
 
 .pointer
   cursor: pointer
+
+.primary-btn
+  display: inline-block
+  font-weight: 500
+  font-size: .98rem
+  transition: 0.25s
+  color: #fff
+  padding: 10px 26px
+  border-radius: 0.5rem
+  background: $primary-color
+  cursor: pointer
+
+  &:hover
+    transform: scale(0.98)
+  &:disabled
+    opacity: .6
+
+.secondary-btn
+  @extend .primary-btn
+  background: #888
+
+.invalid-data
+  color: #f70c0c
+  font-size: .94rem
