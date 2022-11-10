@@ -1,16 +1,17 @@
 const routes = [
   {
-    id: 1,
     path: "/overview",
     context: "Overview",
   },
   {
-    id: 2,
     path: "/projects",
     context: "Projects",
   },
   {
-    id: 3,
+    path: "/explore",
+    context: "Explore",
+  },
+  {
     path: "/my-profile",
     context: "My Profile",
   },

@@ -24,7 +24,7 @@ function Header() {
         <div className="con-right">
           <div className="right">
             <div
-              className={`${s.con_user_btn} d-flex gap-3 pointer align-items-center`}
+              className={`${s.con_user_btn} d-none d-lg-flex gap-3 pointer align-items-center`}
             >
               <div className="user-profile-round d-none d-lg-flex gap-3 align-items-center">
                 {username ? <p>{username}</p> : ""}

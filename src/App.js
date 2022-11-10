@@ -4,7 +4,7 @@ import Login from "components/login/Login";
 import Register from "components/register/Register";
 import Template from "components/template/Template";
 import Overview from "components/overview/Overview";
-import Project from "components/project/Project";
+import Project from "components/project/Project-dashboard";
 
 import s from './utils/scss/App.module.sass'
 import Profile from "components/profile/Profile";
@@ -38,6 +38,7 @@ function App() {
             <Route path="/overview" element={<Overview />} />
             <Route path="/projects" element={<Project />} />
             <Route path="/my-profile" element={<Profile />} />
+            <Route path="/explore" element={<Profile />} />
           </Route>
 
           {$routes.map((route) => (

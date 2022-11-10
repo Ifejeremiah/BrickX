@@ -3,6 +3,7 @@ import Sidebar from "components/sidebar/Sidebar";
 import { Outlet } from "react-router-dom";
 import routes from "utils/routes";
 
+import service from "services/service";
 import s from "./css/Template.module.sass";
 
 function Template() {
@@ -18,8 +19,9 @@ function Template() {
         <div className="col-12 col-lg-10">
           <div
             className={`${s.overview_container} d-flex align-items-center justify-content-between`}
+            style={{ height: service.browserHeight() }}
           >
-            <i></i>
+            {!service.isMobile && <i></i>}
             <div className={s.main_container}>
               <Outlet />
             </div>

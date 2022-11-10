@@ -7,9 +7,9 @@ function Sidebar({ routes }) {
     <div className={`${s.main_sidebar}`}>
       <div className="d-flex- align-items-center justify-content-center">
         <ul className="pt-5">
-          {routes.map((route) => (
+          {routes.map((route, key) => (
             <NavLink
-              key={route.id}
+              key={key}
               className={({ isActive }) => (isActive ? `${s.active}` : "")}
               to={route.path}
             >
