@@ -11,7 +11,7 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.4.2",
     "react-scripts": "5.0.1",
-    "sass": "^1.55.0",
+    "sass": "^1.56.1",
     "web-vitals": "^2.1.4",
     "yup": "^0.32.11"
   },
@@ -19,7 +19,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "rebuild": "rm -rf node_modules && npm install && npm start"
   },
   "eslintConfig": {
     "extends": [

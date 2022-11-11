@@ -54,7 +54,7 @@ function Homepage() {
     });
 
   return (
-    <div className={s.main_container}>
+    <div className={s.main_container} id='Homepage_Main_Container'>
       <div className="con-container">
         <div className="img-bg">
           <img
@@ -182,7 +182,7 @@ function Homepage() {
         <div className="section-e">
           <div>
             <div className="title text-center">Trusted by</div>
-            <ul className="d-lg-flex align-items-center justify-content-center">
+            <ul className="d-lg-flex align-items-center justify-content-center gap-4">
               <li>
                 <img
                   src="https://www.turnerconstruction.com/Content/Images/turner.gif"
