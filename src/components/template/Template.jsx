@@ -5,10 +5,11 @@ import routes from "utils/routes";
 
 import service from "services/service";
 import s from "./css/Template.module.sass";
+import "./css/Template.sass";
 
 function Template() {
   return (
-    <div className="template-container p-2">
+    <div className="template-container p-2" id="Template_Main_Container">
       <Header />
 
       <div className="d-flex align-items-start">
@@ -21,7 +22,7 @@ function Template() {
             className={`${s.overview_container} d-flex align-items-center justify-content-between`}
             style={{ height: service.browserHeight() }}
           >
-            {!service.isMobile && <i></i>}
+            <i></i>
             <div className={s.main_container}>
               <Outlet />
             </div>

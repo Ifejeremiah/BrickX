@@ -1,9 +1,8 @@
 import { useState } from "react";
+import { useFormik } from "formik";
 
 import "./css/Profile.sass";
-import s from "./css/Profile.module.sass";
 import Button from "components/button/Button";
-import { useFormik } from "formik";
 
 document.title = `BrickX - My Profile`;
 
@@ -14,10 +13,52 @@ function Profile() {
     email: "zainabsanni@gmail.com",
     type: "contractor",
     job: "Cost Manager",
-    bio: "Welcome! Hey be nice.",
+    bio: "I experiment with liquid art photography. Extended licenses and some of my best art photos available through my website link below.",
     gender: "Female",
-    phone: "+2348025925416",
   });
+
+  const reviews = [
+    {
+      reviewer: {
+        firstname: "Ife",
+        lastname: "Jeremiah",
+        job: "Manager",
+        type: "contractor",
+      },
+      content:
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate officiis inventore eius porro nisi perspiciatis in, repellat illum commodi iure.",
+    },
+    {
+      reviewer: {
+        firstname: "Ife",
+        lastname: "Jeremiah",
+        job: "Manager",
+        type: "contractor",
+      },
+      content:
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate officiis inventore eius porro nisi perspiciatis in, repellat illum commodi iure.",
+    },
+    {
+      reviewer: {
+        firstname: "Ife",
+        lastname: "Jeremiah",
+        job: "Manager",
+        type: "contractor",
+      },
+      content:
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate officiis inventore eius porro nisi perspiciatis in, repellat illum commodi iure.",
+    },
+    {
+      reviewer: {
+        firstname: "Ife",
+        lastname: "Jeremiah",
+        job: "Manager",
+        type: "contractor",
+      },
+      content:
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate officiis inventore eius porro nisi perspiciatis in, repellat illum commodi iure.",
+    },
+  ];
 
   const formik = useFormik({
     initialValues: user,
@@ -33,31 +74,54 @@ function Profile() {
   });
 
   return (
-    <div className="container">
-      <div className={s.profile}>
-        <div className="con-header d-lg-flex align-items-center justify-content-between mb-4">
-          <div className="d-sm-flex align-items-center gap-3 gap-lg-4">
-            <div className={s.user_img}>
+    <div id="Profile_Main_Container">
+      <div className="con-header d-lg-flex align-items-center justify-content-between mb-4 sections">
+        <div>
+          <div className="d-sm-flex align-items-center gap-3 gap-lg-4 mb-lg-4">
+            <div className="user-img">
               <img
                 src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
                 alt=""
               />
             </div>
 
-            <div className={s.user_data}>
-              <div className={s.user_name}>
+            <div className="user-data d-flex align-items-center justify-content-lg-center gap-4">
+              <div className="username">
                 {user.firstName} {user.lastName}
               </div>
-              <div className={s.user_email}>{user.email}</div>
               <div
-                className={s.user_type}
+                className="user-type"
                 title="Contractor User Type - Contractor creates projects and assign jobs to workers."
               >
                 {user.type}
               </div>
             </div>
           </div>
-          <div className="edit-user-btn py-3">
+
+          <div className="user-bio">
+            <p>
+              I experiment with liquid art photography. Extended licenses and
+              some of my best art photos available through my website link
+              below.
+            </p>
+          </div>
+        </div>
+
+        <div className="d-flex align-items-start gap-5">
+          <div className="con-rating mb-3 mb-lg-0 me-lg-5">
+            <div className="rating-text mb-2">4.5 Ratings</div>
+            <div>
+              <div className="rating-icon">
+                <i className="fa-solid fa-star"></i>
+                <i className="fa-solid fa-star"></i>
+                <i className="fa-solid fa-star"></i>
+                <i className="fa-solid fa-star-half-stroke"></i>
+                <i className="fa-solid fa-star-half-stroke"></i>
+              </div>
+            </div>
+          </div>
+
+          <div className="edit-user-btn py-3 ms-lg-5">
             <Button
               text="Edit Your Profile"
               modal
@@ -151,20 +215,6 @@ function Profile() {
                       <option value="Female">Female</option>
                     </select>
                   </div>
-
-                  <div className="mb-3">
-                    <label htmlFor="phone" className="form-label">
-                      Phone Number
-                    </label>
-                    <input
-                      className="form-control"
-                      id="phone"
-                      name="phone"
-                      type="text"
-                      onChange={formik.handleChange}
-                      value={formik.values.phone}
-                    />
-                  </div>
                 </>
               }
               modalFooterBtn={
@@ -188,33 +238,80 @@ function Profile() {
             />
           </div>
         </div>
+      </div>
 
-        <div className="con-body">
-          <div className="mt">
-            <ul className="list-group">
-              <li className="list-group-item">
-                <b>Job description</b>
-                <p>{user.job}</p>
-              </li>
+      <div className="con-context">
+        <div className="context sections">
+          <div className="header mb-4">
+            <h3 className="section-title">Professional Details:</h3>
+          </div>
 
-              <li className="list-group-item">
-                <b>Bio:</b>
-                <p>{user.bio}</p>
-              </li>
-
-              <li className="list-group-item">
-                <b>Gender:</b>
+          <div className="content row">
+            <div className="col-12 col-lg-3">
+              <div className="mb-5 mb-lg-0">
+                <h3>Full Name</h3>
+                <p>
+                  {user.firstName}&nbsp;{user.lastName}
+                </p>
+              </div>
+            </div>
+            <div className="col-12 col-lg-3">
+              <div className="mb-5 mb-lg-0">
+                <h3>Email</h3>
+                <p>{user.email}</p>
+              </div>
+            </div>
+            <div className="col-12 col-lg-3">
+              <div className="mb-5 mb-lg-0">
+                <h3>Gender</h3>
                 <p>{user.gender}</p>
-              </li>
-
-              <li className="list-group-item">
-                <b>Phone:</b>
-                <p>{user.phone}</p>
-              </li>
-            </ul>
+              </div>
+            </div>
+            <div className="col-12 col-lg-3">
+              <div className="mb-5 mb-lg-0">
+                <h3>Profession</h3>
+                <p>{user.job}</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+
+      <section className="con-review sections">
+        <div className="header">
+          <h3 className="section-title">Reviews:</h3>
+        </div>
+
+        <div className="context my-5">
+          {reviews.map((review) => (
+            <div className="review-cards">
+              <div className="title d-flex align-items-center gap-3 mb-3">
+                <div className="user-image">
+                  <img
+                    src="https://images.unsplash.com/photo-1540569014015-19a7be504e3a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80"
+                    alt=""
+                  />
+                </div>
+                <div className="d-lg-flex align-items-start gap-3">
+                  <div>
+                    <div className="user-name">
+                      {review.reviewer.firstname}&nbsp;
+                      {review.reviewer.lastname}
+                    </div>
+                    <div className="user-title">{review.reviewer.job}</div>
+                  </div>
+                  <div>
+                    <div className="user-detail">{review.reviewer.type}</div>
+                  </div>
+                </div>
+              </div>
+              <div className="body">
+                <p>{review.content}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
     </div>
   );
 }
