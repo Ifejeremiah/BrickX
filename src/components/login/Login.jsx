@@ -34,7 +34,9 @@ function Login() {
         </div>
         <div className="overlay"></div>
         <div className="con-context">
-          <h2 className="logo">BrickX.</h2>
+          <h2 className="logo">
+            <Link to="/">BrickX.</Link>
+          </h2>
         </div>
       </div>
 

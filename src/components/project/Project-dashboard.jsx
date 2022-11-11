@@ -12,17 +12,17 @@ document.title = `BrickX - Projects`;
 function Project() {
   const [projects, setProject] = useState([]);
 
-  const [check, setCheck] = useState({
-    inspector: false,
-    flooringInstaller: false,
-    surveyor: false,
-    brickMason: false,
-    ironWorker: false,
-    craneOperator: false,
-    safetyManager: false,
-    costEstimator: false,
-    manager: false,
-  });
+  // const [check, setCheck] = useState({
+  //   inspector: false,
+  //   flooringInstaller: false,
+  //   surveyor: false,
+  //   brickMason: false,
+  //   ironWorker: false,
+  //   craneOperator: false,
+  //   safetyManager: false,
+  //   costEstimator: false,
+  //   manager: false,
+  // });
 
   const formik = useFormik({
     initialValues: projectData,

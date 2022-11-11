@@ -42,7 +42,9 @@ function Register() {
   return (
     <div className="container-register">
       <header className="mb-4">
-        <h3 className="bold">BrickX.</h3>
+        <h3 className="bold">
+          <Link to="/">BrickX.</Link>
+        </h3>
         <p className="text-ash-color">Create a new account</p>
       </header>
 
