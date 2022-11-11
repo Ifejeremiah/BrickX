@@ -14,7 +14,7 @@ function Explore() {
 
     {
       title: "Manager",
-      status: "open",
+      status: "closed",
       projectName: "Trump Tower",
       createdOn: "5 hours ago",
       applied: "30",
@@ -32,7 +32,7 @@ function Explore() {
 
     {
       title: "Manager",
-      status: "open",
+      status: "closed",
       projectName: "Trump Tower",
       createdOn: "5 hours ago",
       applied: "30",
@@ -41,7 +41,7 @@ function Explore() {
 
     {
       title: "Manager",
-      status: "open",
+      status: "closed",
       projectName: "Trump Tower",
       createdOn: "5 hours ago",
       applied: "30",
@@ -76,7 +76,11 @@ function Explore() {
               <div className="con-card">
                 <div className="header d-flex align-items-center justify-content-between">
                   <div className="title">{job.title}</div>
-                  <div className="status">{job.status}</div>
+                  <div
+                    className={`status ${job.status == "open" ? "active" : ""}`}
+                  >
+                    {job.status}
+                  </div>
                 </div>
 
                 <div className="body">
