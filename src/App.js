@@ -14,6 +14,7 @@ import Project from "components/project/Project-dashboard";
 import s from "./utils/scss/App.module.sass";
 import Profile from "components/profile/Profile";
 import Homepage from "components/homepage/Homepage";
+import Explore from "components/explore/Explore";
 
 function App() {
   const $routes = [
@@ -44,7 +45,7 @@ function App() {
             <Route path="/overview" element={<Overview />} />
             <Route path="/projects" element={<Project />} />
             <Route path="/my-profile" element={<Profile />} />
-            <Route path="/explore" element={<Profile />} />
+            <Route path="/explore" element={<Explore />} />
           </Route>
 
           {$routes.map((route) => (

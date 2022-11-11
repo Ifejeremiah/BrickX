@@ -283,8 +283,8 @@ function Profile() {
         </div>
 
         <div className="context my-5">
-          {reviews.map((review) => (
-            <div className="review-cards">
+          {reviews.map((review, key) => (
+            <div className="review-cards" key={key}>
               <div className="title d-flex align-items-center gap-3 mb-3">
                 <div className="user-image">
                   <img
