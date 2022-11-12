@@ -76,12 +76,12 @@ function Explore() {
       <div className="main-context">
         <div className="context">
           {jobs.map((job, key) => (
-            <Link to="/projects" key={key}>
+            <Link to="/explore/id" key={key}>
               <div className="con-card">
                 <div className="header d-flex align-items-center justify-content-between">
                   <div className="title">{job.title}</div>
                   <div
-                    className={`status ${job.status == "open" ? "active" : ""}`}
+                    className={`status ${job.status === "open" ? "active" : ""}`}
                   >
                     {job.status}
                   </div>
