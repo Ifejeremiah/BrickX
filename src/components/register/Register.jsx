@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import service from "services/service";
 import "./css/Register.sass";
 
 function Register() {
@@ -13,7 +14,7 @@ function Register() {
 
   const [message, setMsg] = useState("");
 
-  document.title = "BrickX - Create new account";
+  service.setPageTitle("Create new account");
 
   const navigate = useNavigate();
 

@@ -1,9 +1,12 @@
 import { useRef } from "react";
 import { Link } from "react-router-dom";
+import service from "services/service";
 import s from "./css/Homepage.module.sass";
 import "./css/Homepage.sass";
 
 function Homepage() {
+  service.setPageTitle("Homepage");
+
   const ServicesRef = useRef(null);
 
   const sectionACardData = [
@@ -54,7 +57,7 @@ function Homepage() {
     });
 
   return (
-    <div className={s.main_container} id='Homepage_Main_Container'>
+    <div className={s.main_container} id="Homepage_Main_Container">
       <div className="con-container">
         <div className="img-bg">
           <img

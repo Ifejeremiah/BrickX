@@ -2,41 +2,148 @@ import { useFormik } from "formik";
 
 import Button from "components/button/Button";
 import { projectSchema, projectData } from "schema/projectValidate";
-
-import s from "./css/Project.module.sass";
 import "./css/Project.sass";
-import { useState } from "react";
 
-document.title = `BrickX - Projects`;
+import { useState } from "react";
+import service from "services/service";
+import { Link } from "react-router-dom";
 
 function Project() {
-  const [projects, setProject] = useState([]);
+  service.setPageTitle("Projects");
 
-  // const [check, setCheck] = useState({
-  //   inspector: false,
-  //   flooringInstaller: false,
-  //   surveyor: false,
-  //   brickMason: false,
-  //   ironWorker: false,
-  //   craneOperator: false,
-  //   safetyManager: false,
-  //   costEstimator: false,
-  //   manager: false,
-  // });
+  const [projects, setProject] = useState([
+    {
+      title: "The Art of the Deal",
+      duration: "1 month",
+      start_date: "2022-11-05",
+      end_date: "2022-11-13",
+      status: "closed",
+      budget: 212,
+      workers: [
+        "inspector",
+        "flooringInstaller",
+        "surveyor",
+        "brickMason",
+        "ironWorker",
+        "craneOperator",
+        "safetyManager",
+        "costEstimator",
+        "manager",
+      ],
+    },
+    {
+      title: "The Art of the Deal",
+      duration: "1 month",
+      start_date: "2022-11-05",
+      end_date: "2022-11-13",
+      status: "open",
+      budget: 212,
+      workers: [
+        "inspector",
+        "flooringInstaller",
+        "surveyor",
+        "brickMason",
+        "ironWorker",
+        "craneOperator",
+        "safetyManager",
+        "costEstimator",
+        "manager",
+      ],
+    },
+    {
+      title: "The Art of the Deal",
+      duration: "1 month",
+      start_date: "2022-11-05",
+      end_date: "2022-11-13",
+      status: "open",
+      budget: 212,
+      workers: [
+        "inspector",
+        "flooringInstaller",
+        "surveyor",
+        "brickMason",
+        "ironWorker",
+        "craneOperator",
+        "safetyManager",
+        "costEstimator",
+        "manager",
+      ],
+    },
+    {
+      title: "The Art of the Deal",
+      duration: "1 month",
+      start_date: "2022-11-05",
+      end_date: "2022-11-13",
+      status: "closed",
+      budget: 212,
+      workers: [
+        "inspector",
+        "flooringInstaller",
+        "surveyor",
+        "brickMason",
+        "ironWorker",
+        "craneOperator",
+        "safetyManager",
+        "costEstimator",
+        "manager",
+      ],
+    },
+    {
+      title: "The Art of the Deal",
+      duration: "1 month",
+      start_date: "2022-11-05",
+      end_date: "2022-11-13",
+      status: "open",
+      budget: 212,
+      workers: [
+        "inspector",
+        "flooringInstaller",
+        "surveyor",
+        "brickMason",
+        "ironWorker",
+        "craneOperator",
+        "safetyManager",
+        "costEstimator",
+        "manager",
+      ],
+    },
+    {
+      title: "The Art of the Deal",
+      duration: "1 month",
+      start_date: "2022-11-05",
+      end_date: "2022-11-13",
+      status: "closed",
+      budget: 212,
+      workers: [
+        "inspector",
+        "flooringInstaller",
+        "surveyor",
+        "brickMason",
+        "ironWorker",
+        "craneOperator",
+        "safetyManager",
+        "costEstimator",
+        "manager",
+      ],
+    },
+  ]);
+
+  function onSubmit(values) {
+    console.log(JSON.stringify(values, null, 2));
+    values.status = "open";
+    setProject([values, ...projects]);
+    formik.resetForm();
+  }
 
   const formik = useFormik({
     initialValues: projectData,
     validationSchema: projectSchema,
-    onSubmit: (values) => {
-      console.log(JSON.stringify(values, null, 2));
-      setProject([values, ...projects]);
-      formik.resetForm();
-    },
+    onSubmit,
   });
 
   return (
-    <div className="main-container">
-      <div className="header d-flex align-items-center justify-content-between px-lg-4">
+    <div className="main-container" id="Project-dashboard_Main_Container">
+      <div className="con-header d-flex align-items-center justify-content-between">
         <div className="title">
           <h2>Projects</h2>
         </div>
@@ -133,71 +240,38 @@ function Project() {
                   </p>
                 </div>
 
-                <div className="mb-3">
-                  <label htmlFor="end_date" className="form-label">
-                    End Date
-                  </label>
-                  <input
-                    className="form-control"
-                    id="end_date"
-                    name="end_date"
-                    type="date"
-                    onChange={formik.handleChange}
-                    value={formik.values.end_date}
-                  />
-                  <p className="invalid-data">
-                    {formik.errors.end_date && formik.touched.end_date
-                      ? formik.errors.end_date
-                      : null}
-                  </p>
-                </div>
-
                 <h5 className="my-4">Select workers you need</h5>
+                <p className="invalid-data mb-2">
+                  {formik.errors.hasWorkers && formik.touched.hasWorkers
+                    ? formik.errors.hasWorkers
+                    : null}
+                </p>
 
-                <div className="mb-3 d-flex align-items-center justify-content-between">
+                <div className="mb-3">
                   <div className="form-check form-switch">
                     <input
                       className="form-check-input"
                       type="checkbox"
                       id="inspector"
-                      name="workers.inspector.select"
+                      name="workers.inspector"
                       onChange={formik.handleChange}
-                      checked={formik.values.workers.inspector.select}
+                      checked={formik.values.workers.inspector}
                     />
                     <label className="form-check-label" htmlFor="inspector">
                       Inspector
                     </label>
                   </div>
-
-                  {formik.values.workers.inspector.select && (
-                    <div>
-                      <div>
-                        <label htmlFor="no-inspectors" className="form-label">
-                          Number of Inspectors
-                        </label>
-                        <input
-                          id="no-inspectors"
-                          name="workers.inspector.number"
-                          type="number"
-                          className="form-control"
-                          onChange={formik.handleChange}
-                          value={formik.values.workers.inspector.number}
-                        />
-                      </div>
-                      <p className="invalid-data">Enter number of Inspectors</p>
-                    </div>
-                  )}
                 </div>
 
-                <div className="mb-3 d-flex align-items-center justify-content-between">
+                <div className="mb-3">
                   <div className="form-check form-switch">
                     <input
                       className="form-check-input"
                       type="checkbox"
                       id="flooringInstaller"
-                      name="workers.flooringInstaller.select"
+                      name="workers.flooringInstaller"
                       onChange={formik.handleChange}
-                      checked={formik.values.workers.flooringInstaller.select}
+                      checked={formik.values.workers.flooringInstaller}
                     />
                     <label
                       className="form-check-label"
@@ -206,249 +280,118 @@ function Project() {
                       Flooring Installer
                     </label>
                   </div>
-
-                  {formik.values.workers.flooringInstaller.select && (
-                    <div>
-                      <label
-                        htmlFor="no-flooringInstaller"
-                        className="form-label"
-                      >
-                        Number of Flooring Installer
-                      </label>
-                      <input
-                        id="no-flooringInstaller"
-                        name="workers.flooringInstaller.number"
-                        type="number"
-                        className="form-control"
-                        onChange={formik.handleChange}
-                        value={formik.values.workers.flooringInstaller.number}
-                      />
-                    </div>
-                  )}
                 </div>
 
-                <div className="mb-3 d-flex align-items-center justify-content-between">
+                <div className="mb-3">
                   <div className="form-check form-switch">
                     <input
                       className="form-check-input"
                       type="checkbox"
                       id="surveyor"
-                      name="workers.surveyor.select"
+                      name="workers.surveyor"
                       onChange={formik.handleChange}
-                      checked={formik.values.workers.surveyor.select}
+                      checked={formik.values.workers.surveyor}
                     />
                     <label className="form-check-label" htmlFor="surveyor">
                       Surveyor
                     </label>
                   </div>
-
-                  {formik.values.workers.surveyor.select && (
-                    <div>
-                      <label htmlFor="no-surveyor" className="form-label">
-                        Number of Surveyors
-                      </label>
-                      <input
-                        id="no-surveyor"
-                        name="workers.surveyor.number"
-                        type="number"
-                        className="form-control"
-                        onChange={formik.handleChange}
-                        value={formik.values.workers.surveyor.number}
-                      />
-                    </div>
-                  )}
                 </div>
 
-                <div className="mb-3 d-flex align-items-center justify-content-between">
+                <div className="mb-3">
                   <div className="form-check form-switch">
                     <input
                       className="form-check-input"
                       type="checkbox"
                       id="brickMason"
-                      name="workers.brickMason.select"
+                      name="workers.brickMason"
                       onChange={formik.handleChange}
-                      checked={formik.values.workers.brickMason.select}
+                      checked={formik.values.workers.brickMason}
                     />
                     <label className="form-check-label" htmlFor="brickMason">
                       Brick Mason
                     </label>
                   </div>
-
-                  {formik.values.workers.brickMason.select && (
-                    <div>
-                      <label htmlFor="no-brickMason" className="form-label">
-                        Number of Brick Manson
-                      </label>
-                      <input
-                        id="no-brickMason"
-                        name="workers.brickMason.number"
-                        type="number"
-                        className="form-control"
-                        onChange={formik.handleChange}
-                        value={formik.values.workers.brickMason.number}
-                      />
-                    </div>
-                  )}
                 </div>
 
-                <div className="mb-3 d-flex align-items-center justify-content-between">
+                <div className="mb-3">
                   <div className="form-check form-switch">
                     <input
                       className="form-check-input"
                       type="checkbox"
                       id="ironWorker"
-                      name="workers.ironWorker.select"
+                      name="workers.ironWorker"
                       onChange={formik.handleChange}
-                      checked={formik.values.workers.ironWorker.select}
+                      checked={formik.values.workers.ironWorker}
                     />
                     <label className="form-check-label" htmlFor="ironWorker">
                       Iron Worker
                     </label>
                   </div>
-
-                  {formik.values.workers.ironWorker.select && (
-                    <div>
-                      <label htmlFor="no-ironWorker" className="form-label">
-                        Number of Iron Workers
-                      </label>
-                      <input
-                        id="no-ironWorker"
-                        name="workers.ironWorker.number"
-                        type="number"
-                        className="form-control"
-                        onChange={formik.handleChange}
-                        value={formik.values.workers.ironWorker.number}
-                      />
-                    </div>
-                  )}
                 </div>
 
-                <div className="mb-3 d-flex align-items-center justify-content-between">
+                <div className="mb-3">
                   <div className="form-check form-switch">
                     <input
                       className="form-check-input"
                       type="checkbox"
                       id="craneOperator"
-                      name="workers.craneOperator.select"
+                      name="workers.craneOperator"
                       onChange={formik.handleChange}
-                      checked={formik.values.workers.craneOperator.select}
+                      checked={formik.values.workers.craneOperator}
                     />
                     <label className="form-check-label" htmlFor="craneOperator">
                       Crane Operator
                     </label>
                   </div>
-
-                  {formik.values.workers.craneOperator.select && (
-                    <div>
-                      <label htmlFor="no-craneOperator" className="form-label">
-                        Number of Crane Operators
-                      </label>
-                      <input
-                        id="no-craneOperator"
-                        name="workers.craneOperator.number"
-                        type="number"
-                        className="form-control"
-                        onChange={formik.handleChange}
-                        value={formik.values.workers.craneOperator.number}
-                      />
-                    </div>
-                  )}
                 </div>
 
-                <div className="mb-3 d-flex align-items-center justify-content-between">
+                <div className="mb-3">
                   <div className="form-check form-switch">
                     <input
                       className="form-check-input"
                       type="checkbox"
                       id="safetyManager"
-                      name="workers.safetyManager.select"
+                      name="workers.safetyManager"
                       onChange={formik.handleChange}
-                      checked={formik.values.workers.safetyManager.select}
+                      checked={formik.values.workers.safetyManager}
                     />
                     <label className="form-check-label" htmlFor="safetyManager">
                       Safety Manager
                     </label>
                   </div>
-
-                  {formik.values.workers.safetyManager.select && (
-                    <div>
-                      <label htmlFor="no-safetyManager" className="form-label">
-                        Number of Safety Managers
-                      </label>
-                      <input
-                        id="no-safetyManager"
-                        name="workers.safetyManager.number"
-                        type="number"
-                        className="form-control"
-                        onChange={formik.handleChange}
-                        value={formik.values.workers.safetyManager.number}
-                      />
-                    </div>
-                  )}
                 </div>
 
-                <div className="mb-3 d-flex align-items-center justify-content-between">
+                <div className="mb-3">
                   <div className="form-check form-switch">
                     <input
                       className="form-check-input"
                       type="checkbox"
                       id="costEstimator"
-                      name="workers.costEstimator.select"
+                      name="workers.costEstimator"
                       onChange={formik.handleChange}
-                      checked={formik.values.workers.costEstimator.select}
+                      checked={formik.values.workers.costEstimator}
                     />
                     <label className="form-check-label" htmlFor="costEstimator">
                       Cost Estimator
                     </label>
                   </div>
-
-                  {formik.values.workers.costEstimator.select && (
-                    <div>
-                      <label htmlFor="no-costEstimator" className="form-label">
-                        Number of Cost Estimators
-                      </label>
-                      <input
-                        id="no-costEstimator"
-                        name="workers.costEstimator.number"
-                        type="number"
-                        className="form-control"
-                        onChange={formik.handleChange}
-                        value={formik.values.workers.costEstimator.number}
-                      />
-                    </div>
-                  )}
                 </div>
 
-                <div className="mb-3 d-flex align-items-center justify-content-between">
+                <div className="mb-3">
                   <div className="form-check form-switch">
                     <input
                       className="form-check-input"
                       type="checkbox"
                       id="manager"
-                      name="workers.manager.select"
+                      name="workers.manager"
                       onChange={formik.handleChange}
-                      checked={formik.values.workers.manager.select}
+                      checked={formik.values.workers.manager}
                     />
                     <label className="form-check-label" htmlFor="manager">
                       Manager
                     </label>
                   </div>
-
-                  {formik.values.workers.manager.select && (
-                    <div>
-                      <label htmlFor="no-manager" className="form-label">
-                        Number of Managers
-                      </label>
-                      <input
-                        id="no-manager"
-                        name="workers.manager.number"
-                        type="number"
-                        className="form-control"
-                        onChange={formik.handleChange}
-                        value={formik.values.workers.manager.number}
-                      />
-                    </div>
-                  )}
                 </div>
               </form>
             }
@@ -478,39 +421,60 @@ function Project() {
         </div>
       </div>
 
-      <div className="body pt-4 px-lg-4">
+      <div className="con-context">
         {projects.length > 0 ? (
-          <div className={`${s.project_list} table-responsive`}>
-            <table className="table caption-top table-hover table-striped">
-              <caption>All Projects</caption>
+          <div className=" table-responsive">
+            <table className="table">
               <thead>
-                <tr>
-                  <th scope="col">Project Title</th>
+                <tr className="header-row">
+                  <th scope="col">#</th>
+                  <th scope="col">Title</th>
+                  <th scope="col">Budget</th>
                   <th scope="col">Duration</th>
-                  <th scope="col">Start Date</th>
-                  <th scope="col">End Date</th>
+                  <th scope="col">No. of Applicants</th>
+                  <th scope="col">Status</th>
                 </tr>
               </thead>
               <tbody>
                 {projects.map((project, key) => (
                   <tr key={key}>
-                    <td>{project.title}</td>
-                    <td>{project.duration}</td>
-                    <td>{project.start_date}</td>
-                    <td>{project.end_date}</td>
+                    <td>
+                      <Link to="/explore">{key + 1}</Link>
+                    </td>
+                    <td>
+                      <Link to="/explore">{project.title}</Link>
+                    </td>
+                    <td>
+                      <Link to="/explore">{project.budget}</Link>
+                    </td>
+                    <td>
+                      <Link to="/explore">{project.duration}</Link>
+                    </td>
+                    <td>{23}</td>
+                    <td>
+                      <Link to="/explore">
+                        <div
+                          className={`status ${
+                            project.status == "open" ? "active" : ""
+                          }`}
+                        >
+                          {project.status}
+                        </div>
+                      </Link>
+                    </td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
         ) : (
-          <div className={s.con_no_data}>
+          <div className="">
             <div>
               No Projects to show. &nbsp;
               <span
                 data-bs-toggle="modal"
                 data-bs-target="#new-project-create"
-                className={s.highlight}
+                className=""
               >
                 Create New Project
               </span>

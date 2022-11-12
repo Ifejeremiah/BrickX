@@ -38,11 +38,6 @@ function Header() {
                 ></div>
                 <ul className="dropdown-menu">
                   <li>
-                    <Link className="dropdown-item" to="/overview">
-                      My Profile
-                    </Link>
-                  </li>
-                  <li>
                     <Link className="dropdown-item" to="/login">
                       Logout
                     </Link>

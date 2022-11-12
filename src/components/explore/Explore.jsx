@@ -1,7 +1,11 @@
 import { Link } from "react-router-dom";
+import service from "services/service";
 import "./css/Explore.sass";
 
+
 function Explore() {
+  service.setPageTitle("Explore");
+  
   const jobs = [
     {
       title: "Manager",
@@ -72,7 +76,7 @@ function Explore() {
       <div className="main-context">
         <div className="context">
           {jobs.map((job, key) => (
-            <Link to="/project" key={key}>
+            <Link to="/projects" key={key}>
               <div className="con-card">
                 <div className="header d-flex align-items-center justify-content-between">
                   <div className="title">{job.title}</div>

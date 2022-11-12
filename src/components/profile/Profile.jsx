@@ -3,10 +3,11 @@ import { useFormik } from "formik";
 
 import "./css/Profile.sass";
 import Button from "components/button/Button";
-
-document.title = `BrickX - My Profile`;
+import service from "services/service";
 
 function Profile() {
+  service.setPageTitle("My Profile");
+
   const [user, setUser] = useState({
     firstName: "Zainab",
     lastName: "Sanni",

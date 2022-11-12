@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
+import service from "services/service";
 import "./css/Login.sass";
 
 function Login() {
@@ -10,7 +11,7 @@ function Login() {
   const [query] = useSearchParams();
   const navigate = useNavigate();
 
-  document.title = "BrickX - Login";
+  service.setPageTitle("Login");
 
   function validate(callback) {
     if (!email || !password) {
