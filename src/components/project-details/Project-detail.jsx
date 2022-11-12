@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import service from "services/service";
 import "./css/Project-detail.sass";
 
@@ -24,13 +25,15 @@ function ProjectDetail() {
               <i className="fa-regular fa-circle-check"></i>
               <p className="job">Manager</p>
             </div>
-            <div className="con-user d-flex align-items-center justify-content-between">
-              <div className="d-flex align-items-center gap-3">
-                <i className="fa-solid fa-power-off"></i>
-                <h3 className="user">Ife Jeremiah</h3>
+            <Link to="/my-profile">
+              <div className="con-user d-flex align-items-center justify-content-between">
+                <div className="d-flex align-items-center gap-3">
+                  <i className="fa-solid fa-power-off"></i>
+                  <h3 className="user">Ife Jeremiah</h3>
+                </div>
+                <div className="type">contractor</div>
               </div>
-              <div className="type">contractor</div>
-            </div>
+            </Link>
           </div>
         </div>
 
