@@ -3,7 +3,7 @@ import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import service from "services/service";
 import "./css/Login.sass";
 
-function Login() {
+function Login({ authStatus }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -21,7 +21,14 @@ function Login() {
 
   function submit(evt) {
     evt.preventDefault();
-    validate(() => navigate({ pathname: "/overview" }));
+    validate(async () => {
+      if (email !== "0001@gmail.com" || password !== "123456789") {
+        setMsg("Incorrect email or password");
+      } else {
+        await authStatus();
+        navigate({ pathname: "/overview" });
+      }
+    });
   }
 
   return (

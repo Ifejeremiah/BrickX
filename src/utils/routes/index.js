@@ -14,7 +14,7 @@ const routes = [
   {
     path: "/my-profile",
     context: "My Profile",
-  },
+  }
 ];
 
 export default routes;

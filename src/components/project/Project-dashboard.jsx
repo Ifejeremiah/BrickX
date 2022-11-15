@@ -455,7 +455,7 @@ function Project() {
                       <Link to="/explore">
                         <div
                           className={`status ${
-                            project.status == "open" ? "active" : ""
+                            project.status === "open" ? "active" : ""
                           }`}
                         >
                           {project.status}
