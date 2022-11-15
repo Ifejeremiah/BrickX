@@ -429,7 +429,7 @@ function Project() {
                 <tr className="header-row">
                   <th scope="col">#</th>
                   <th scope="col">Title</th>
-                  <th scope="col">Budget</th>
+                  <th scope="col">Budget (&#8358;)</th>
                   <th scope="col">Duration</th>
                   <th scope="col">No. of Applicants</th>
                   <th scope="col">Status</th>
@@ -439,20 +439,20 @@ function Project() {
                 {projects.map((project, key) => (
                   <tr key={key}>
                     <td>
-                      <Link to="/explore">{key + 1}</Link>
+                      <Link to="/projects/id">{key + 1}</Link>
                     </td>
                     <td>
-                      <Link to="/explore">{project.title}</Link>
+                      <Link to="/projects/id">{project.title}</Link>
                     </td>
                     <td>
-                      <Link to="/explore">{project.budget}</Link>
+                      <Link to="/projects/id">{project.budget}</Link>
                     </td>
                     <td>
-                      <Link to="/explore">{project.duration}</Link>
+                      <Link to="/projects/id">{project.duration}</Link>
                     </td>
                     <td>{23}</td>
                     <td>
-                      <Link to="/explore">
+                      <Link to="/projects/id">
                         <div
                           className={`status ${
                             project.status === "open" ? "active" : ""

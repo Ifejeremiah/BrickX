@@ -17,6 +17,7 @@ import ProjectDetail from "components/project-details/Project-detail";
 import s from "./utils/scss/App.module.sass";
 import Login from "components/login/Login";
 import Register from "components/register/Register";
+import ProjectData from "components/project-data/Project-data";
 
 function App() {
 
@@ -68,10 +69,12 @@ function App() {
           }>
             <Route path="/overview" element={<Overview />} />
             <Route path="/projects" element={<Project />} />
+            <Route path="/projects/id" element={<ProjectData />} />
             <Route path="/my-profile" element={<Profile />} />
             <Route path="/explore" element={<Explore />} />
             <Route path="/explore/id" element={<ProjectDetail />} />
           </Route>
+
           <Route path='/login' element={<Login authStatus={setAuthEnv} />} />
           <Route path='/register' element={<Register />} />
           <Route path='*' component={<Navigate to="/overview" replace />} />
