@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import s from "./css/Header.module.sass";
 
-function Header() {
+function Header({logout}) {
   const username = "Ife Jeremiah";
 
   return (
@@ -38,7 +38,7 @@ function Header() {
                 ></div>
                 <ul className="dropdown-menu">
                   <li>
-                    <Link className="dropdown-item" to="/login">
+                    <Link className="dropdown-item" to="/login" onClick={logout}>
                       Logout
                     </Link>
                   </li>

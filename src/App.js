@@ -21,7 +21,7 @@ import Register from "components/register/Register";
 function App() {
 
   // const [project, setProjects] = useState([])
-  const [isAuthenticated, setIsAuthenticated] = useState()
+  const [isAuthenticated, setIsAuthenticated] = useState(true)
 
   const token = localStorage.getItem("auth-token");
 
@@ -29,6 +29,14 @@ function App() {
     localStorage.setItem("auth-token", 12321);
     setIsAuthenticated(true)
   }
+
+  function doLogout() {
+    localStorage.removeItem('auth-token')
+  }
+
+  useEffect(() => {
+    if (token === null) setIsAuthenticated(false)
+  }, [token])
 
   // useEffect(() => {
   //   (async () => {
@@ -53,7 +61,7 @@ function App() {
           {/* Template Children routes */}
           <Route element={
             !!token && isAuthenticated ? (
-              <Template />
+              <Template logout={doLogout} />
             ) : (
               <Navigate to="/login" />
             )

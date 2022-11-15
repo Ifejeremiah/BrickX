@@ -14,6 +14,7 @@ function ProjectDetail() {
 
   return (
     <div id="Project-detail_Main_Container">
+      
       <div className="row mb-5 mb-lg-4">
         <div className="con-section-a col-12 col-lg-6">
           <div className="section-a px-lg-4 mb-5 mb-lg-0">

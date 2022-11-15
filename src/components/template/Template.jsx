@@ -7,10 +7,10 @@ import service from "services/service";
 import s from "./css/Template.module.sass";
 import "./css/Template.sass";
 
-function Template() {
+function Template({logout}) {
   return (
     <div className="template-container p-2" id="Template_Main_Container">
-      <Header />
+      <Header logout={logout}/>
 
       <div className="d-flex align-items-start">
         <div className="col-2 d-none d-lg-block">
