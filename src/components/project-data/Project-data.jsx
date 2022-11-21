@@ -1,3 +1,4 @@
+import Button from "components/button/Button";
 import Previous from "components/previous/Previous";
 import React from "react";
 import { useState } from "react";
@@ -29,8 +30,8 @@ function ProjectData() {
         </div>
       </div>
 
-      <div className="section-b row">
-        <div className="col-12 col-lg-6 mb-5 mb-lg-0">
+      <div className="section-b">
+        <div className="mb-5">
           <div>
             <div className="details-card">
               <div className="header d-flex align-items-center justify-content-between mb-3">
@@ -74,26 +75,105 @@ function ProjectData() {
           </div>
         </div>
 
-        <div className="col-12 col-lg-6">
-          <div className="section-c">
-            <div>
-              <div className="header">All Applications Requests</div>
-              <div className="con-apply">
-                <Link to="/">
-                  <div className="apply-card">
-                    <h3>3</h3>
-                    <p>Managers</p>
-                  </div>
-                </Link>
+        <div className="d-flex align-items-center gap-4">
+          <div>
+            <Button
+              type="primary"
+              text="View all applicants"
+              modal={true}
+              modalHeaderTitle="All Project Applicants"
+              modalTarget="view-all-applicants"
+              modalContext={
+                <div className="con-applicant">
+                  <Link to="/my-profile" data-bs-dismiss="modal">
+                    <div className="applicant-card">
+                      <div className="con-img">
+                        <img
+                          src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+                          alt=""
+                        />
+                      </div>
+                      <div className="con-text">
+                        <h3 className="name">John Doe</h3>
+                        <p className="title">Manager</p>
+                      </div>
+                    </div>
+                  </Link>
 
-                <Link to="/">
-                  <div className="apply-card">
-                    <h3>3</h3>
-                    <p>Managers</p>
-                  </div>
-                </Link>
-              </div>
-            </div>
+                  <Link to="/my-profile" data-bs-dismiss="modal">
+                    <div className="applicant-card">
+                      <div className="con-img">
+                        <img
+                          src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+                          alt=""
+                        />
+                      </div>
+                      <div className="con-text">
+                        <h3 className="name">John Doe</h3>
+                        <p className="title">Manager</p>
+                      </div>
+                    </div>
+                  </Link>
+                </div>
+              }
+              modalFooterBtn={
+                <>
+                  <button data-bs-dismiss="modal" className="primary-btn">
+                    Done
+                  </button>
+                </>
+              }
+            />
+          </div>
+
+          <div>
+            <Button
+              type="primary"
+              text="View all workers"
+              modal={true}
+              modalHeaderTitle="All Active Workers on Project"
+              modalTarget="view-all-workers"
+              modalContext={
+                <div className="con-applicant">
+                  <Link to="/my-profile" data-bs-dismiss="modal">
+                    <div className="applicant-card">
+                      <div className="con-img">
+                        <img
+                          src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+                          alt=""
+                        />
+                      </div>
+                      <div className="con-text">
+                        <h3 className="name">John Doe</h3>
+                        <p className="title">Manager</p>
+                      </div>
+                    </div>
+                  </Link>
+
+                  <Link to="/my-profile" data-bs-dismiss="modal">
+                    <div className="applicant-card">
+                      <div className="con-img">
+                        <img
+                          src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+                          alt=""
+                        />
+                      </div>
+                      <div className="con-text">
+                        <h3 className="name">John Doe</h3>
+                        <p className="title">Manager</p>
+                      </div>
+                    </div>
+                  </Link>
+                </div>
+              }
+              modalFooterBtn={
+                <>
+                  <button data-bs-dismiss="modal" className="primary-btn">
+                    Done
+                  </button>
+                </>
+              }
+            />
           </div>
         </div>
       </div>

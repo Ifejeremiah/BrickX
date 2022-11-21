@@ -49,6 +49,34 @@
         &.active
           background: green
 
+    .con-applicant
+
+      .applicant-card
+        display: flex
+        align-items: center
+        gap: 20px
+        background: #ebebeb
+        padding: 12px 20px
+        border-radius: .4rem
+        margin-bottom: 10px
+
+
+        .con-img
+          $size: 60px
+          width: $size
+          height: $size
+          border-radius: 50%
+          overflow: hidden
+
+        .con-text
+          .name
+            font-weight: 600
+            font-size: 1.2rem
+          .title
+            // font-weight: 500
+            font-size: 1.2rem
+
+
   .section-c
     .header
       font-size: 1.2rem
@@ -82,3 +110,7 @@
 @media (min-width:992px)
   #Project-data_Main_Container
     padding: 20px 30px
+
+    .section-b
+      .details-card
+        padding: 40px

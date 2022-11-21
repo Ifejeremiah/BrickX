@@ -1,44 +1,37 @@
-import { useState } from "react";
+import { useFormik } from "formik";
 import { Link, useNavigate } from "react-router-dom";
+import registerValidationSchema from "schema/registerSchema";
+
 import service from "services/service";
 import "./css/Register.sass";
 
 function Register() {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [password2, setPassword2] = useState("");
-  const [user1, setUser1] = useState(false);
-  const [user2, setUser2] = useState(false);
-
-  const [message, setMsg] = useState("");
-
   service.setPageTitle("Create new account");
 
   const navigate = useNavigate();
 
-  const check = user1 || user2;
+  const registerData = {
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    password2: "",
+    isContractor: false,
+    isWorker: false,
+    job: "",
+  };
 
-  function validate(callback) {
-    if (
-      !firstName ||
-      !lastName ||
-      !email ||
-      !password ||
-      !password2 ||
-      !check
-    ) {
-      setMsg("Fill in all fields");
-    } else if (password !== password2) {
-      setMsg("Passwords don't match");
-    } else callback();
+  function onSubmit(values) {
+    console.log(JSON.stringify(values, null, 2));
+    formik.resetForm();
+    navigate({ pathname: "/login", search: "?__lgn=vlan" });
   }
 
-  function submit(evt) {
-    evt.preventDefault();
-    validate(() => navigate({ pathname: "/login", search: "?__lgn=vlan" }));
-  }
+  const formik = useFormik({
+    initialValues: registerData,
+    validationSchema: registerValidationSchema,
+    onSubmit,
+  });
 
   return (
     <div className="container-register">
@@ -49,21 +42,22 @@ function Register() {
         <p className="text-ash-color">Create a new account</p>
       </header>
 
-      {message ? <p className="msg">{message}</p> : ""}
-
-      <form className="py-4" onSubmit={submit}>
+      <form className="py-4" onSubmit={formik.handleSubmit}>
         <div className="control-form mb-4">
           <label htmlFor="first-name">First Name:</label> <br />
           <input
             type="text"
             id="first-name"
             placeholder="Enter First Name"
-            value={firstName}
-            onChange={(e) => {
-              setFirstName(e.target.value);
-              setMsg("");
-            }}
+            name="firstName"
+            value={formik.values.firstName}
+            onChange={formik.handleChange}
           />
+          <p className="invalid-data">
+            {formik.errors.firstName && formik.touched.firstName
+              ? formik.errors.firstName
+              : null}
+          </p>
         </div>
 
         <div className="control-form mb-4">
@@ -72,12 +66,15 @@ function Register() {
             type="text"
             id="last-name"
             placeholder="Enter Last Name"
-            value={lastName}
-            onChange={(e) => {
-              setLastName(e.target.value);
-              setMsg("");
-            }}
+            name="lastName"
+            value={formik.values.lastName}
+            onChange={formik.handleChange}
           />
+          <p className="invalid-data">
+            {formik.errors.lastName && formik.touched.lastName
+              ? formik.errors.lastName
+              : null}
+          </p>
         </div>
 
         <div className="control-form mb-4">
@@ -86,12 +83,15 @@ function Register() {
             type="email"
             id="email"
             placeholder="Enter Email"
-            value={email}
-            onChange={(e) => {
-              setEmail(e.target.value);
-              setMsg("");
-            }}
+            name="email"
+            value={formik.values.email}
+            onChange={formik.handleChange}
           />
+          <p className="invalid-data">
+            {formik.errors.email && formik.touched.email
+              ? formik.errors.email
+              : null}
+          </p>
         </div>
 
         <div className="control-form mb-4">
@@ -100,12 +100,15 @@ function Register() {
             type="password"
             id="password"
             placeholder="Enter password"
-            value={password}
-            onChange={(e) => {
-              setPassword(e.target.value);
-              setMsg("");
-            }}
+            name="password"
+            value={formik.values.password}
+            onChange={formik.handleChange}
           />
+          <p className="invalid-data">
+            {formik.errors.password && formik.touched.password
+              ? formik.errors.password
+              : null}
+          </p>
         </div>
 
         <div className="control-form mb-4">
@@ -114,54 +117,78 @@ function Register() {
             type="password"
             id="password2"
             placeholder="Confirm password"
-            value={password2}
-            onChange={(e) => {
-              setPassword2(e.target.value);
-              setMsg("");
-            }}
+            name="password2"
+            value={formik.values.password2}
+            onChange={formik.handleChange}
           />
+          <p className="invalid-data">
+            {formik.errors.password2 && formik.touched.password2
+              ? formik.errors.password2
+              : null}
+          </p>
         </div>
 
         <div className="control-check">
           <p className="label">User Type:</p>
 
-          <div className="d-flex align-items-center gap-4 my-4">
-            <div className="form-check form-switch">
-              <input
-                className="form-check-input"
-                type="checkbox"
-                id="user1"
-                checked={user1}
-                value={user1}
-                onChange={(e) => {
-                  setUser1(e.currentTarget.checked);
-                  setMsg("");
-                }}
-                disabled={user2}
-              />
-              <label className="form-check-label" htmlFor="user1">
-                Contractor
-              </label>
-            </div>
+          <div className="my-3">
+            <div className="d-flex align-items-center gap-4 mb-2">
+              <div className="form-check form-switch">
+                <input
+                  className="form-check-input"
+                  type="checkbox"
+                  id="user1"
+                  name="isContractor"
+                  value={formik.values.isContractor}
+                  onChange={formik.handleChange}
+                  disabled={formik.values.isWorker}
+                />
+                <label className="form-check-label" htmlFor="user1">
+                  Contractor
+                </label>
+              </div>
 
-            <div className="form-check form-switch">
-              <input
-                className="form-check-input"
-                type="checkbox"
-                id="user2"
-                checked={user2}
-                value={user2}
-                onChange={(e) => {
-                  setUser2(e.currentTarget.checked);
-                  setMsg("");
-                }}
-                disabled={user1}
-              />
-              <label className="form-check-label" htmlFor="user2">
-                Worker
-              </label>
+              <div className="form-check form-switch">
+                <input
+                  className="form-check-input"
+                  type="checkbox"
+                  id="user2"
+                  name="isWorker"
+                  value={formik.values.isWorker}
+                  onChange={formik.handleChange}
+                  disabled={formik.values.isContractor}
+                />
+                <label className="form-check-label" htmlFor="user2">
+                  Worker
+                </label>
+              </div>
             </div>
           </div>
+
+          {formik.values.isWorker ? (
+            <>
+              <div className="control-form mb-4">
+                <label htmlFor="select-job" className="mb-3">
+                  Select job:
+                </label>{" "}
+                <br />
+                <select
+                  className="form-select"
+                  name="job"
+                  id="job"
+                  onChange={formik.handleChange}
+                  value={formik.values.job}
+                >
+                  <option defaultValue="">Select Job</option>
+                  <option value="cost_manager">Cost Manager</option>
+                  <option value="inspector">Inspector</option>
+                  <option value="flooring_installer">
+                    Flooring Installer{" "}
+                  </option>
+                </select>
+              </div>
+            </>
+          ) : null}
         </div>
 
         <div className="control-form">
