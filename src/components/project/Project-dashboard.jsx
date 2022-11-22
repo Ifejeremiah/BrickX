@@ -193,7 +193,7 @@ function Project() {
                     <option value="1 month">1 Month</option>
                     <option value="2 months">2 Months</option>
                     <option value="3 months">3 Months </option>
-                    <option value="4 months">6 Months </option>
+                    <option value="6 months">6 Months </option>
                   </select>
                   <p className="invalid-data">
                     {formik.errors.duration && formik.touched.duration

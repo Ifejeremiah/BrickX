@@ -18,6 +18,7 @@ import s from "./utils/scss/App.module.sass";
 import Login from "components/login/Login";
 import Register from "components/register/Register";
 import ProjectData from "components/project-data/Project-data";
+import Requests from "components/requests/Requests";
 
 function App() {
 
@@ -71,6 +72,7 @@ function App() {
             <Route path="/projects" element={<Project />} />
             <Route path="/projects/id" element={<ProjectData />} />
             <Route path="/my-profile" element={<Profile />} />
+            <Route path="/requests" element={<Requests />} />
             <Route path="/explore" element={<Explore />} />
             <Route path="/explore/id" element={<ProjectDetail />} />
           </Route>

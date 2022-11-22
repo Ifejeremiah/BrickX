@@ -8,6 +8,10 @@ const routes = [
     context: "Projects",
   },
   {
+    path: "/requests",
+    context: "Requests",
+  },
+  {
     path: "/explore",
     context: "Explore",
   },
