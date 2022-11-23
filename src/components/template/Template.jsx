@@ -6,14 +6,21 @@ import routes from "utils/routes";
 import service from "services/service";
 import s from "./css/Template.module.sass";
 import "./css/Template.sass";
+import { useState } from "react";
 
-function Template({logout}) {
+function Template({ logout }) {
+  const [toggle, setToggle] = useState("d-none");
+
+  function changeToggle() {
+    setToggle("d-block");
+  };
+
   return (
     <div className="template-container p-2" id="Template_Main_Container">
-      <Header logout={logout}/>
+      <Header logout={logout} />
 
       <div className="d-flex align-items-start">
-        <div className="col-2 d-none d-lg-block">
+        <div className={`${toggle} col-8 col-lg-2 d-lg-block`}>
           <Sidebar routes={routes} />
         </div>
 
