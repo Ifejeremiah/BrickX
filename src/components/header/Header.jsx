@@ -1,13 +1,14 @@
 import { Link } from "react-router-dom";
 import s from "./css/Header.module.sass";
 
-function Header({logout}) {
+function Header({logout, doToggle}) {
   const username = "Ife Jeremiah";
+
 
   return (
     <div className={`${s.header_container} mb-2`}>
       <div className="d-flex align-items-center justify-content-between px-lg-5 px-4 py-3">
-        <div className="con-left">
+        <div className="con-left" onClick={doToggle}>
           <div className="left d-block d-lg-none">
             <div className={`${s.con_sidebar_btn} d-flex`}>
               <i className="fa-solid fa-bars"></i>

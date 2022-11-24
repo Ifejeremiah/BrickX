@@ -204,7 +204,7 @@ function Overview() {
                         <div>
                           <div className="title mb-3">Manager</div>
                           <p className="timestamp d-flex align-items-center gap-2">
-                            <i class="fa-regular fa-clock"></i>5 hours ago
+                            <i className="fa-regular fa-clock"></i>5 hours ago
                           </p>
                         </div>
                         <div className={`status ${elem.status}`}>

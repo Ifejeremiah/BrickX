@@ -1,10 +1,9 @@
 import React from "react";
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./css/Requests.sass";
 
 function Requests() {
-  const [requests, setRequests] = useState([
+  const requests = [
     {
       title: "Trump Tower",
       status: "pending",
@@ -21,7 +20,7 @@ function Requests() {
       title: "Trump Tower",
       status: "declined",
     },
-  ]);
+  ];
 
   return (
     <div id="Requests_Main_Container">
@@ -32,7 +31,7 @@ function Requests() {
       <div className="con-context">
         <div className="context">
           {requests.map((elem, key) => (
-            <Link to="/explore/id" key={key}>
+            <Link to="/explore/id?view=requests" key={key}>
               <div className="con-apply">
                 <div className="apply">
                   <h3 className="title">{elem.title}</h3>

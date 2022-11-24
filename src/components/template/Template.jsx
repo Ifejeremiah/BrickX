@@ -11,20 +11,28 @@ import { useState } from "react";
 function Template({ logout }) {
   const [toggle, setToggle] = useState("d-none");
 
-  function changeToggle() {
-    setToggle("d-block");
-  };
+  function doToggle() {
+    setToggle(toggle === "d-none" ? "d-block" : "d-none");
+  }
+
+  function doToggleWithScroll() {
+    setToggle(toggle === "d-none" ? "d-block" : "d-none");
+  }
+
+  function doSlideOut() {
+    setToggle("d-none");
+  }
 
   return (
     <div className="template-container p-2" id="Template_Main_Container">
-      <Header logout={logout} />
+      <Header logout={logout} doToggle={doToggle} />
 
       <div className="d-flex align-items-start">
         <div className={`${toggle} col-8 col-lg-2 d-lg-block`}>
-          <Sidebar routes={routes} />
+          <Sidebar routes={routes} doToggle={doToggleWithScroll} />
         </div>
 
-        <div className="col-12 col-lg-10">
+        <div className="col-12 col-lg-10" onClick={doSlideOut}>
           <div
             className={`${s.overview_container} d-flex align-items-center justify-content-between`}
             style={{ height: service.browserHeight() }}
