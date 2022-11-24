@@ -21,38 +21,42 @@ import ProjectData from "components/project-data/Project-data";
 import Requests from "components/requests/Requests";
 
 function App() {
-
-  // const [project, setProjects] = useState([])
-  const [isAuthenticated, setIsAuthenticated] = useState(true)
+  const [isAuthenticated, setIsAuthenticated] = useState(true);
 
   const token = localStorage.getItem("auth-token");
 
+  function getPayload() {
+    if (isAuthenticated && token !== null) {
+      const { role, user_id } = JSON.parse(atob(token.split(".")[1]));
+      return { role, user_id };
+    }
+  }
+
   function setAuthEnv(token) {
     localStorage.setItem("auth-token", token);
-    setIsAuthenticated(true)
+    setIsAuthenticated(true);
   }
 
   function doLogout() {
-    localStorage.removeItem('auth-token')
+    localStorage.removeItem("auth-token");
+    setIsAuthenticated(false);
   }
 
   useEffect(() => {
-    if (token === null) setIsAuthenticated(false)
-  }, [token])
-
-  // useEffect(() => {
-  //   (async () => {
-  //     setProjects(await fetchProjects())
-  //   })()
-  // }, [])
-
-  // async function fetchProjects() {
-  //   const res = await fetch('/departments')
-  //   const data = await res.json()
-  //   return data
-  // }
-
-  // console.log('Result of projects', project)
+    if (token === null) setIsAuthenticated(false);
+    // TO HANDLE JWT EXPIRE
+    // ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    // else if (token !== null) {
+    //   const isExpired =
+    //     JSON.parse(atob(token.split(".")[1])).exp > Date.now() / 1000;
+    //   if (isExpired) {
+    //     setIsAuthenticated(false);
+    //   } else {
+    //     setIsAuthenticated(true);
+    //   }
+    // }
+    else setIsAuthenticated(true);
+  }, [token]);
 
   return (
     <Router>
@@ -60,26 +64,29 @@ function App() {
         <Routes>
           <Route path="/" element={<Homepage />} />
 
-          {/* Template Children routes */}
-          <Route element={
-            !!token && isAuthenticated ? (
-              <Template logout={doLogout} />
-            ) : (
-              <Navigate to="/login" />
-            )
-          }>
-            <Route path="/overview" element={<Overview />} />
+          {/* Template Children Routes */}
+          <Route
+            element={
+              !!token && isAuthenticated ? (
+                <Template logout={doLogout} payload={getPayload()} />
+              ) : (
+                <Navigate to="/login" />
+              )
+            }
+          >
+            <Route path="/overview" element={<Overview payload={getPayload()} />} />
             <Route path="/projects" element={<Project />} />
             <Route path="/projects/id" element={<ProjectData />} />
-            <Route path="/my-profile" element={<Profile />} />
-            <Route path="/requests" element={<Requests />} />
+            <Route path="/my-profile" element={<Profile payload={getPayload()} />} />
+            <Route path="/requests" element={<Requests  payload={getPayload()}/>} />
             <Route path="/explore" element={<Explore />} />
             <Route path="/explore/id" element={<ProjectDetail />} />
           </Route>
 
-          <Route path='/login' element={<Login authStatus={setAuthEnv} />} />
-          <Route path='/register' element={<Register />} />
-          <Route path='*' element={<Navigate to="/overview" replace />} />
+          {/* Primary Routes */}
+          <Route path="/login" element={<Login authStatus={setAuthEnv} />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="*" element={<Navigate to="/overview" replace />} />
         </Routes>
       </div>
     </Router>

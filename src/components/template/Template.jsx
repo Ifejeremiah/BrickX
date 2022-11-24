@@ -8,7 +8,7 @@ import s from "./css/Template.module.sass";
 import "./css/Template.sass";
 import { useState } from "react";
 
-function Template({ logout }) {
+function Template({ logout, payload }) {
   const [toggle, setToggle] = useState("d-none");
 
   function doToggle() {
@@ -29,7 +29,12 @@ function Template({ logout }) {
 
       <div className="d-flex align-items-start">
         <div className={`${toggle} col-8 col-lg-2 d-lg-block`}>
-          <Sidebar routes={routes} doToggle={doToggleWithScroll} logout={logout} />
+          <Sidebar
+            routes={routes}
+            doToggle={doToggleWithScroll}
+            logout={logout}
+            role={payload}
+          />
         </div>
 
         <div className="col-12 col-lg-10" onClick={doSlideOut}>

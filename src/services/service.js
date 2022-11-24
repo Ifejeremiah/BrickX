@@ -26,6 +26,8 @@ const service = {
   handleRegisterError: (err, callback) => {
     callback("Email already in use");
   }
+
+  
 }
 
 export default service;

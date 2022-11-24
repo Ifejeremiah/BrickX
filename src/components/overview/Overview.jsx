@@ -2,10 +2,10 @@ import { Link } from "react-router-dom";
 import service from "services/service";
 import "./css/Overview.sass";
 
-function Overview() {
+function Overview({ payload }) {
   const firstName = "John";
 
-  const isWorker = true;
+  const isWorker = payload.role === "Worker";
 
   const projects = [
     {

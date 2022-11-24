@@ -2,7 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./css/Requests.sass";
 
-function Requests() {
+function Requests({ payload }) {
+  console.log("for worker request", payload);
+
   const requests = [
     {
       title: "Trump Tower",

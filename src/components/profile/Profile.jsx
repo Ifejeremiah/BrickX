@@ -5,8 +5,9 @@ import "./css/Profile.sass";
 import Button from "components/button/Button";
 import service from "services/service";
 import { Link, useSearchParams } from "react-router-dom";
+import Previous from "components/previous/Previous";
 
-function Profile() {
+function Profile({ payload }) {
   service.setPageTitle("My Profile");
 
   const [query] = useSearchParams();
@@ -15,11 +16,13 @@ function Profile() {
     firstName: "Zainab",
     lastName: "Sanni",
     email: "zainabsanni@gmail.com",
-    type: "contractor",
+    type: payload.role === "Worker" ? "" : payload.role.toLowerCase(),
     job: "Cost Manager",
     bio: "I experiment with liquid art photography. Extended licenses and some of my best art photos available through my website link below.",
     gender: "Female",
   });
+
+  console.log(payload.role);
 
   const reviews = [
     {
@@ -87,6 +90,12 @@ function Profile() {
     <div id="Profile_Main_Container">
       <div className="con-header d-lg-flex align-items-center justify-content-between mb-4 sections">
         <div>
+          {query.get("search") === "view" || query.get("select") === "check" ? (
+            <div className="mb-5">
+              <Previous route="/projects/id" />
+            </div>
+          ) : null}
+
           <div className="d-sm-flex align-items-center gap-3 gap-lg-4 mb-lg-4">
             <div className="user-img">
               <img
@@ -99,12 +108,17 @@ function Profile() {
               <div className="username">
                 {user.firstName} {user.lastName}
               </div>
-              <div
-                className="user-type"
-                title="Contractor User Type - Contractor creates projects and assign jobs to workers."
-              >
-                {user.type}
-              </div>
+
+              {user.type &&
+              (query.get("search") !== "view" &&
+                query.get("select") !== "check") ? (
+                <div
+                  className="user-type"
+                  title="Contractor User Type - Contractor creates projects and assign jobs to workers."
+                >
+                  {user.type}
+                </div>
+              ) : null}
             </div>
           </div>
 

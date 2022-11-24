@@ -1,9 +1,10 @@
 import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useSearchParams } from "react-router-dom";
 import service from "services/service";
 import s from "./css/Sidebar.module.sass";
 
-function Sidebar({ routes, doToggle, logout }) {
+function Sidebar({ routes, doToggle, logout, role }) {
+  const [query] = useSearchParams();
   return (
     <div
       className={`${s.main_sidebar}`}
@@ -12,21 +13,44 @@ function Sidebar({ routes, doToggle, logout }) {
       <div className="d-flex- align-items-center justify-content-center">
         <ul className="pt-5">
           {routes.map((route, key) => (
-            <NavLink
-              key={key}
-              className={({ isActive }) => (isActive ? `${s.active}` : "")}
-              to={route.path}
-              onClick={doToggle}
-            >
-              <li className="mb-4">{route.context}</li>
-            </NavLink>
+            <div key={key}>
+              {route.role === role.role ? (
+                <NavLink
+                  className={({ isActive }) => (isActive ? `${s.active}` : "")}
+                  to={route.path}
+                  onClick={doToggle}
+                >
+                  <li className="mb-4">{route.context}</li>
+                </NavLink>
+              ) : null}
+              {route.role === "all" ? (
+                <NavLink
+                  key={key}
+                  className={({ isActive }) =>
+                    isActive &&
+                    query.get("search") !== "view" &&
+                    query.get("select") !== "check"
+                      ? `${s.active}`
+                      : ""
+                  }
+                  to={route.path}
+                  onClick={doToggle}
+                >
+                  <li className="mb-4">{route.context}</li>
+                </NavLink>
+              ) : null}
+            </div>
           ))}
         </ul>
 
         {service.isMobile ? (
           <>
-            <li className={`${s.last_sidebar_item}`}>
-              <Link to="/login" onClick={logout}>
+            <li>
+              <Link
+                to="/login"
+                onClick={logout}
+                className={`${s.last_sidebar_item}`}
+              >
                 Logout
               </Link>
             </li>
