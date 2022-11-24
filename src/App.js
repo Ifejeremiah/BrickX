@@ -79,7 +79,7 @@ function App() {
 
           <Route path='/login' element={<Login authStatus={setAuthEnv} />} />
           <Route path='/register' element={<Register />} />
-          <Route path='*' component={<Navigate to="/overview" replace />} />
+          <Route path='*' element={<Navigate to="/overview" replace />} />
         </Routes>
       </div>
     </Router>

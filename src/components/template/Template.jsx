@@ -29,7 +29,7 @@ function Template({ logout }) {
 
       <div className="d-flex align-items-start">
         <div className={`${toggle} col-8 col-lg-2 d-lg-block`}>
-          <Sidebar routes={routes} doToggle={doToggleWithScroll} />
+          <Sidebar routes={routes} doToggle={doToggleWithScroll} logout={logout} />
         </div>
 
         <div className="col-12 col-lg-10" onClick={doSlideOut}>

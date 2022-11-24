@@ -1,9 +1,9 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import service from "services/service";
 import s from "./css/Sidebar.module.sass";
 
-function Sidebar({ routes, doToggle }) {
+function Sidebar({ routes, doToggle, logout }) {
   return (
     <div
       className={`${s.main_sidebar}`}
@@ -22,6 +22,16 @@ function Sidebar({ routes, doToggle }) {
             </NavLink>
           ))}
         </ul>
+
+        {service.isMobile ? (
+          <>
+            <li className={`${s.last_sidebar_item}`}>
+              <Link to="/login" onClick={logout}>
+                Logout
+              </Link>
+            </li>
+          </>
+        ) : null}
       </div>
     </div>
   );
