@@ -1,4 +1,6 @@
+import Message from "components/message/Message";
 import { useFormik } from "formik";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import registerValidationSchema from "schema/registerSchema";
 
@@ -8,23 +10,33 @@ import "./css/Register.sass";
 function Register() {
   service.setPageTitle("Create new account");
 
+  const [msg, setMsg] = useState("");
+
   const navigate = useNavigate();
 
   const registerData = {
     firstName: "",
     lastName: "",
     email: "",
+    gender: "",
     password: "",
     password2: "",
+    userType: "",
+    jobType: "",
     isContractor: false,
     isWorker: false,
-    job: "",
   };
 
   function onSubmit(values) {
-    console.log(JSON.stringify(values, null, 2));
-    formik.resetForm();
-    navigate({ pathname: "/login", search: "?__lgn=vlan" });
+    if (values.isContractor) values.userType = "Contractor";
+    else values.userType = "Worker";
+    service.doRegister(values).then(
+      (res) => {
+        formik.resetForm();
+        navigate({ pathname: "/login", search: "?__lgn=vlan" });
+      },
+      (err) => service.handleRegisterError(err, setMsg)
+    );
   }
 
   const formik = useFormik({
@@ -41,6 +53,8 @@ function Register() {
         </h3>
         <p className="text-ash-color">Create a new account</p>
       </header>
+
+      {msg ? <Message msg={msg} /> : null}
 
       <form className="py-4" onSubmit={formik.handleSubmit}>
         <div className="control-form mb-4">
@@ -90,6 +104,28 @@ function Register() {
           <p className="invalid-data">
             {formik.errors.email && formik.touched.email
               ? formik.errors.email
+              : null}
+          </p>
+        </div>
+
+        <div className="control-form mb-3">
+          <label htmlFor="gender" className="form-label">
+            Gender
+          </label>
+          <select
+            className="form-select"
+            name="gender"
+            id="gender"
+            onChange={formik.handleChange}
+            value={formik.values.gender}
+          >
+            <option defaultValue="">Select gender</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+          <p className="invalid-data">
+            {formik.errors.gender && formik.touched.gender
+              ? formik.errors.gender
               : null}
           </p>
         </div>
@@ -169,22 +205,19 @@ function Register() {
             <>
               <div className="control-form mb-4">
                 <label htmlFor="select-job" className="mb-3">
-                  Select job:
-                </label>{" "}
+                  Select Job title:
+                </label>
                 <br />
                 <select
                   className="form-select"
-                  name="job"
-                  id="job"
+                  name="jobType"
+                  id="select-job"
                   onChange={formik.handleChange}
-                  value={formik.values.job}
+                  value={formik.values.jobType}
                 >
-                  <option defaultValue="">Select Job</option>
-                  <option value="cost_manager">Cost Manager</option>
-                  <option value="inspector">Inspector</option>
-                  <option value="flooring_installer">
-                    Flooring Installer{" "}
-                  </option>
+                  <option defaultValue="">Select title</option>
+                  <option value="COST_MANAGER">Cost Manager</option>
+                  <option value="INSPECTOR">Inspector</option>
                 </select>
               </div>
             </>

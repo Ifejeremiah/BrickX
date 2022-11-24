@@ -21,10 +21,14 @@ function Login({ authStatus }) {
 
   function submit(evt) {
     evt.preventDefault();
-    validate(async () => {
-      const res = await service.doLogin({ email, password });
-      await authStatus(res.accessToken);
-      navigate({ pathname: "/overview" });
+    validate(() => {
+      service.doLogin({ email, password }).then(
+        (res) => {
+          authStatus(res.accessToken);
+          navigate({ pathname: "/overview" });
+        },
+        (err) => service.handleLoginError(err, setMsg)
+      );
     });
   }
 
