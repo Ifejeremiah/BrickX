@@ -22,12 +22,9 @@ function Login({ authStatus }) {
   function submit(evt) {
     evt.preventDefault();
     validate(async () => {
-      if (email !== "0001@gmail.com" || password !== "123456789") {
-        setMsg("Incorrect email or password");
-      } else {
-        await authStatus();
-        navigate({ pathname: "/overview" });
-      }
+      const res = await service.doLogin({ email, password });
+      await authStatus(res.accessToken);
+      navigate({ pathname: "/overview" });
     });
   }
 

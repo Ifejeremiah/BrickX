@@ -27,8 +27,8 @@ function App() {
 
   const token = localStorage.getItem("auth-token");
 
-  function setAuthEnv() {
-    localStorage.setItem("auth-token", 12321);
+  function setAuthEnv(token) {
+    localStorage.setItem("auth-token", token);
     setIsAuthenticated(true)
   }
 

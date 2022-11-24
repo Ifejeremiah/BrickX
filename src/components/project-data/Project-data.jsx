@@ -193,6 +193,27 @@ function ProjectData() {
               modalTarget="view-all-applicants"
               modalContext={
                 <div className="con-applicant">
+                  <Link to="/my-profile?search=view?select=check" data-bs-dismiss="modal">
+                    <div className="applicant-card d-flex align-items-center justify-content-between">
+                      <div className="con-left">
+                        <div className="con-img">
+                          <img
+                            src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+                            alt=""
+                          />
+                        </div>
+                        <div className="con-text">
+                          <h3 className="name">John Doe</h3>
+                          <p className="title">Manager</p>
+                        </div>
+                      </div>
+
+                      <div className="con-right">
+                        <p>View Profile</p>
+                      </div>
+                    </div>
+                  </Link>
+
                   <Link to="/my-profile?select=check" data-bs-dismiss="modal">
                     <div className="applicant-card d-flex align-items-center justify-content-between">
                       <div className="con-left">
@@ -214,6 +235,286 @@ function ProjectData() {
                     </div>
                   </Link>
 
+                  <Link to="/my-profile?select=check" data-bs-dismiss="modal">
+                    <div className="applicant-card d-flex align-items-center justify-content-between">
+                      <div className="con-left">
+                        <div className="con-img">
+                          <img
+                            src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+                            alt=""
+                          />
+                        </div>
+                        <div className="con-text">
+                          <h3 className="name">John Doe</h3>
+                          <p className="title">Manager</p>
+                        </div>
+                      </div>
+
+                      <div className="con-right">
+                        <p>View Profile</p>
+                      </div>
+                    </div>
+                  </Link>
+                  <Link to="/my-profile?select=check" data-bs-dismiss="modal">
+                    <div className="applicant-card d-flex align-items-center justify-content-between">
+                      <div className="con-left">
+                        <div className="con-img">
+                          <img
+                            src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+                            alt=""
+                          />
+                        </div>
+                        <div className="con-text">
+                          <h3 className="name">John Doe</h3>
+                          <p className="title">Manager</p>
+                        </div>
+                      </div>
+
+                      <div className="con-right">
+                        <p>View Profile</p>
+                      </div>
+                    </div>
+                  </Link>
+                  <Link to="/my-profile?select=check" data-bs-dismiss="modal">
+                    <div className="applicant-card d-flex align-items-center justify-content-between">
+                      <div className="con-left">
+                        <div className="con-img">
+                          <img
+                            src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+                            alt=""
+                          />
+                        </div>
+                        <div className="con-text">
+                          <h3 className="name">John Doe</h3>
+                          <p className="title">Manager</p>
+                        </div>
+                      </div>
+
+                      <div className="con-right">
+                        <p>View Profile</p>
+                      </div>
+                    </div>
+                  </Link>
+                  <Link to="/my-profile?select=check" data-bs-dismiss="modal">
+                    <div className="applicant-card d-flex align-items-center justify-content-between">
+                      <div className="con-left">
+                        <div className="con-img">
+                          <img
+                            src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+                            alt=""
+                          />
+                        </div>
+                        <div className="con-text">
+                          <h3 className="name">John Doe</h3>
+                          <p className="title">Manager</p>
+                        </div>
+                      </div>
+
+                      <div className="con-right">
+                        <p>View Profile</p>
+                      </div>
+                    </div>
+                  </Link>
+                  <Link to="/my-profile?select=check" data-bs-dismiss="modal">
+                    <div className="applicant-card d-flex align-items-center justify-content-between">
+                      <div className="con-left">
+                        <div className="con-img">
+                          <img
+                            src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+                            alt=""
+                          />
+                        </div>
+                        <div className="con-text">
+                          <h3 className="name">John Doe</h3>
+                          <p className="title">Manager</p>
+                        </div>
+                      </div>
+
+                      <div className="con-right">
+                        <p>View Profile</p>
+                      </div>
+                    </div>
+                  </Link>
+                  <Link to="/my-profile?select=check" data-bs-dismiss="modal">
+                    <div className="applicant-card d-flex align-items-center justify-content-between">
+                      <div className="con-left">
+                        <div className="con-img">
+                          <img
+                            src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+                            alt=""
+                          />
+                        </div>
+                        <div className="con-text">
+                          <h3 className="name">John Doe</h3>
+                          <p className="title">Manager</p>
+                        </div>
+                      </div>
+
+                      <div className="con-right">
+                        <p>View Profile</p>
+                      </div>
+                    </div>
+                  </Link>
+                  <Link to="/my-profile?select=check" data-bs-dismiss="modal">
+                    <div className="applicant-card d-flex align-items-center justify-content-between">
+                      <div className="con-left">
+                        <div className="con-img">
+                          <img
+                            src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+                            alt=""
+                          />
+                        </div>
+                        <div className="con-text">
+                          <h3 className="name">John Doe</h3>
+                          <p className="title">Manager</p>
+                        </div>
+                      </div>
+
+                      <div className="con-right">
+                        <p>View Profile</p>
+                      </div>
+                    </div>
+                  </Link>
+                  <Link to="/my-profile?select=check" data-bs-dismiss="modal">
+                    <div className="applicant-card d-flex align-items-center justify-content-between">
+                      <div className="con-left">
+                        <div className="con-img">
+                          <img
+                            src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+                            alt=""
+                          />
+                        </div>
+                        <div className="con-text">
+                          <h3 className="name">John Doe</h3>
+                          <p className="title">Manager</p>
+                        </div>
+                      </div>
+
+                      <div className="con-right">
+                        <p>View Profile</p>
+                      </div>
+                    </div>
+                  </Link>
+                  <Link to="/my-profile?select=check" data-bs-dismiss="modal">
+                    <div className="applicant-card d-flex align-items-center justify-content-between">
+                      <div className="con-left">
+                        <div className="con-img">
+                          <img
+                            src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+                            alt=""
+                          />
+                        </div>
+                        <div className="con-text">
+                          <h3 className="name">John Doe</h3>
+                          <p className="title">Manager</p>
+                        </div>
+                      </div>
+
+                      <div className="con-right">
+                        <p>View Profile</p>
+                      </div>
+                    </div>
+                  </Link>
+                  <Link to="/my-profile?select=check" data-bs-dismiss="modal">
+                    <div className="applicant-card d-flex align-items-center justify-content-between">
+                      <div className="con-left">
+                        <div className="con-img">
+                          <img
+                            src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+                            alt=""
+                          />
+                        </div>
+                        <div className="con-text">
+                          <h3 className="name">John Doe</h3>
+                          <p className="title">Manager</p>
+                        </div>
+                      </div>
+
+                      <div className="con-right">
+                        <p>View Profile</p>
+                      </div>
+                    </div>
+                  </Link>
+                  <Link to="/my-profile?select=check" data-bs-dismiss="modal">
+                    <div className="applicant-card d-flex align-items-center justify-content-between">
+                      <div className="con-left">
+                        <div className="con-img">
+                          <img
+                            src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+                            alt=""
+                          />
+                        </div>
+                        <div className="con-text">
+                          <h3 className="name">John Doe</h3>
+                          <p className="title">Manager</p>
+                        </div>
+                      </div>
+
+                      <div className="con-right">
+                        <p>View Profile</p>
+                      </div>
+                    </div>
+                  </Link>
+                  <Link to="/my-profile?select=check" data-bs-dismiss="modal">
+                    <div className="applicant-card d-flex align-items-center justify-content-between">
+                      <div className="con-left">
+                        <div className="con-img">
+                          <img
+                            src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+                            alt=""
+                          />
+                        </div>
+                        <div className="con-text">
+                          <h3 className="name">John Doe</h3>
+                          <p className="title">Manager</p>
+                        </div>
+                      </div>
+
+                      <div className="con-right">
+                        <p>View Profile</p>
+                      </div>
+                    </div>
+                  </Link>
+                  <Link to="/my-profile?select=check" data-bs-dismiss="modal">
+                    <div className="applicant-card d-flex align-items-center justify-content-between">
+                      <div className="con-left">
+                        <div className="con-img">
+                          <img
+                            src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+                            alt=""
+                          />
+                        </div>
+                        <div className="con-text">
+                          <h3 className="name">John Doe</h3>
+                          <p className="title">Manager</p>
+                        </div>
+                      </div>
+
+                      <div className="con-right">
+                        <p>View Profile</p>
+                      </div>
+                    </div>
+                  </Link>
+                  <Link to="/my-profile?select=check" data-bs-dismiss="modal">
+                    <div className="applicant-card d-flex align-items-center justify-content-between">
+                      <div className="con-left">
+                        <div className="con-img">
+                          <img
+                            src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+                            alt=""
+                          />
+                        </div>
+                        <div className="con-text">
+                          <h3 className="name">John Doe</h3>
+                          <p className="title">Manager</p>
+                        </div>
+                      </div>
+
+                      <div className="con-right">
+                        <p>View Profile</p>
+                      </div>
+                    </div>
+                  </Link>
                   <Link to="/my-profile?select=check" data-bs-dismiss="modal">
                     <div className="applicant-card d-flex align-items-center justify-content-between">
                       <div className="con-left">
@@ -250,12 +551,12 @@ function ProjectData() {
             <Button
               type="primary"
               text="View all workers"
-              modal={true}
+              modal
               modalHeaderTitle="All Active Workers on Project"
               modalTarget="view-all-workers"
               modalContext={
                 <div className="con-applicant">
-                  <Link to="/my-profile" data-bs-dismiss="modal">
+                  <Link to="/my-profile?search=view" data-bs-dismiss="modal">
                     <div className="applicant-card d-flex align-items-center gap-3">
                       <div className="con-img">
                         <img
@@ -270,7 +571,7 @@ function ProjectData() {
                     </div>
                   </Link>
 
-                  <Link to="/my-profile" data-bs-dismiss="modal">
+                  <Link to="/my-profile?search=view" data-bs-dismiss="modal">
                     <div className="applicant-card d-flex align-items-center gap-3">
                       <div className="con-img">
                         <img

@@ -73,6 +73,16 @@ function Profile() {
     },
   });
 
+  const reviewForm = useFormik({
+    initialValues: {
+      rating: "",
+      body: "",
+    },
+    onSubmit: (values) => {
+      console.log(JSON.stringify(values, null, 2));
+    },
+  });
+
   return (
     <div id="Profile_Main_Container">
       <div className="con-header d-lg-flex align-items-center justify-content-between mb-4 sections">
@@ -130,7 +140,9 @@ function Profile() {
                 <button className="secondary-btn">Decline</button>
               </Link>
             </>
-          ) : (
+          ) : null}
+
+          {query.get("select") !== "check" && query.get("search") !== "view" ? (
             <div className="edit-user-btn py-3 ms-lg-5">
               <Button
                 text="Edit Your Profile"
@@ -247,7 +259,72 @@ function Profile() {
                 }
               />
             </div>
-          )}
+          ) : null}
+
+          {query.get("search") === "view" ? (
+            <div className="view-user-btn py-3 ms-lg-5">
+              <Button
+                text="Leave Review"
+                modal
+                modalTarget="view-user-profile"
+                modalHeaderTitle="Review Worker"
+                modalContext={
+                  <>
+                    <div className="mb-3">
+                      <label htmlFor="rating" className="form-label">
+                        Rating
+                      </label>
+                      <select
+                        className="form-select"
+                        name="rating"
+                        id="rating"
+                        onChange={reviewForm.handleChange}
+                        value={reviewForm.values.rating}
+                      >
+                        <option defaultValue="">Select review</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                      </select>
+                    </div>
+
+                    <div className="mb-3">
+                      <label htmlFor="body" className="form-label">
+                        Review
+                      </label>
+                      <textarea
+                        className="form-control"
+                        id="body"
+                        name="body"
+                        onChange={reviewForm.handleChange}
+                        value={reviewForm.values.body}
+                      />
+                    </div>
+                  </>
+                }
+                modalFooterBtn={
+                  <>
+                    <>
+                      <button data-bs-dismiss="modal" className="secondary-btn">
+                        Close
+                      </button>
+
+                      <button
+                        type="submit"
+                        className="primary-btn"
+                        onClick={reviewForm.handleSubmit}
+                        data-bs-dismiss="modal"
+                      >
+                        Save
+                      </button>
+                    </>
+                  </>
+                }
+              />
+            </div>
+          ) : null}
         </div>
       </div>
 
