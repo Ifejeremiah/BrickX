@@ -88,7 +88,7 @@ function Profile({ payload }) {
 
   return (
     <div id="Profile_Main_Container">
-      <div className="con-header d-lg-flex align-items-center justify-content-between mb-4 sections">
+      <div className="con-header d-lg-flex align-items-start justify-content-between mb-4 sections">
         <div>
           {query.get("search") === "view" || query.get("select") === "check" ? (
             <div className="mb-5">
@@ -110,8 +110,8 @@ function Profile({ payload }) {
               </div>
 
               {user.type &&
-              (query.get("search") !== "view" &&
-                query.get("select") !== "check") ? (
+              query.get("search") !== "view" &&
+              query.get("select") !== "check" ? (
                 <div
                   className="user-type"
                   title="Contractor User Type - Contractor creates projects and assign jobs to workers."
@@ -123,27 +123,27 @@ function Profile({ payload }) {
           </div>
 
           <div className="user-bio">
-            <p>
-              I experiment with liquid art photography. Extended licenses and
-              some of my best art photos available through my website link
-              below.
-            </p>
+            <p>{user.bio}</p>
           </div>
         </div>
 
         <div className="d-flex align-items-start gap-5">
-          <div className="con-rating mb-3 mb-lg-0 me-lg-5">
-            <div className="rating-text mb-2">4.5 Ratings</div>
-            <div>
-              <div className="rating-icon">
-                <i className="fa-solid fa-star"></i>
-                <i className="fa-solid fa-star"></i>
-                <i className="fa-solid fa-star"></i>
-                <i className="fa-solid fa-star-half-stroke"></i>
-                <i className="fa-regular fa-star"></i>
+          {payload.role === "Worker" ? (
+            <>
+              <div className="con-rating mb-3 mb-lg-0 me-lg-5">
+                <div className="rating-text mb-2">4.5 Ratings</div>
+                <div>
+                  <div className="rating-icon">
+                    <i className="fa-solid fa-star"></i>
+                    <i className="fa-solid fa-star"></i>
+                    <i className="fa-solid fa-star"></i>
+                    <i className="fa-solid fa-star-half-stroke"></i>
+                    <i className="fa-regular fa-star"></i>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
+            </>
+          ) : null}
 
           {query.get("select") === "check" ? (
             <>
@@ -379,41 +379,43 @@ function Profile({ payload }) {
         </div>
       </div>
 
-      <section className="con-review sections">
-        <div className="header">
-          <h3 className="section-title">Reviews:</h3>
-        </div>
+      {payload.role === "Worker" ? (
+        <section className="con-review sections">
+          <div className="header">
+            <h3 className="section-title">Reviews:</h3>
+          </div>
 
-        <div className="context my-5">
-          {reviews.map((review, key) => (
-            <div className="review-cards" key={key}>
-              <div className="title d-flex align-items-center gap-3 mb-3">
-                <div className="user-image">
-                  <img
-                    src="https://images.unsplash.com/photo-1540569014015-19a7be504e3a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80"
-                    alt=""
-                  />
-                </div>
-                <div className="d-lg-flex align-items-start gap-3">
-                  <div>
-                    <div className="user-name">
-                      {review.reviewer.firstname}&nbsp;
-                      {review.reviewer.lastname}
+          <div className="context my-5">
+            {reviews.map((review, key) => (
+              <div className="review-cards" key={key}>
+                <div className="title d-flex align-items-center gap-3 mb-3">
+                  <div className="user-image">
+                    <img
+                      src="https://images.unsplash.com/photo-1540569014015-19a7be504e3a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80"
+                      alt=""
+                    />
+                  </div>
+                  <div className="d-lg-flex align-items-start gap-3">
+                    <div>
+                      <div className="user-name">
+                        {review.reviewer.firstname}&nbsp;
+                        {review.reviewer.lastname}
+                      </div>
+                      <div className="user-title">{review.reviewer.job}</div>
                     </div>
-                    <div className="user-title">{review.reviewer.job}</div>
-                  </div>
-                  <div>
-                    <div className="user-detail">{review.reviewer.type}</div>
+                    <div>
+                      <div className="user-detail">{review.reviewer.type}</div>
+                    </div>
                   </div>
                 </div>
+                <div className="body">
+                  <p>{review.content}</p>
+                </div>
               </div>
-              <div className="body">
-                <p>{review.content}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
+            ))}
+          </div>
+        </section>
+      ) : null}
     </div>
   );
 }

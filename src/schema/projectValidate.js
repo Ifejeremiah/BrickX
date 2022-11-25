@@ -3,21 +3,20 @@ import * as Yup from "yup";
 const projectSchema = Yup.object().shape({
   title: Yup.string()
     .required("Title is required")
-    .min(6, "Title must be at least 6 characters")
-    .max(20, "Title must not exceed 40 characters"),
+    .min(6, "Title must be at least 6 characters"),
   duration: Yup.string().required("Duration is required"),
-  start_date: Yup.date().required("Start date is required"),
+  startDate: Yup.date().required("Date to start is required"),
   budget: Yup.number()
     .required("Budget is required")
-    .min(8, "Budget must be at least 8 numbers"),
+    .min(6, "Budget must be at least 6 numbers"),
 });
 
 const projectData = {
   title: "",
   duration: "",
-  start_date: "",
+  startDate: new Date().toISOString().split("T")[0],
   budget: 0,
-  workers: {
+  jobs: {
     inspector: false,
     flooringInstaller: false,
     surveyor: false,

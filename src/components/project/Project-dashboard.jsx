@@ -128,9 +128,18 @@ function Project() {
     },
   ]);
 
+  const jobs = [];
+
   function onSubmit(values) {
-    console.log(JSON.stringify(values, null, 2));
+    for (let key in values.jobs) {
+      if (values.jobs[key]) jobs.push(key);
+    }
+
+    values.jobs = jobs;
     values.status = "open";
+
+    console.log(JSON.stringify(values, null, 2));
+    
     setProject([values, ...projects]);
     formik.resetForm();
   }
@@ -222,30 +231,26 @@ function Project() {
                 </div>
 
                 <div className="mb-3">
-                  <label htmlFor="start_date" className="form-label">
+                  <label htmlFor="startDate" className="form-label">
                     Start Date
                   </label>
                   <input
                     className="form-control"
-                    id="start_date"
-                    name="start_date"
+                    id="startDate"
+                    name="startDate"
                     type="date"
+                    min={new Date().toISOString().split("T")[0]}
                     onChange={formik.handleChange}
-                    value={formik.values.start_date}
+                    value={formik.values.startDate}
                   />
                   <p className="invalid-data">
-                    {formik.errors.start_date && formik.touched.start_date
-                      ? formik.errors.start_date
+                    {formik.errors.startDate && formik.touched.startDate
+                      ? formik.errors.startDate
                       : null}
                   </p>
                 </div>
 
                 <h5 className="my-4">Select workers you need</h5>
-                <p className="invalid-data mb-2">
-                  {formik.errors.hasWorkers && formik.touched.hasWorkers
-                    ? formik.errors.hasWorkers
-                    : null}
-                </p>
 
                 <div className="mb-3">
                   <div className="form-check form-switch">
@@ -253,9 +258,9 @@ function Project() {
                       className="form-check-input"
                       type="checkbox"
                       id="inspector"
-                      name="workers.inspector"
+                      name="jobs.inspector"
                       onChange={formik.handleChange}
-                      checked={formik.values.workers.inspector}
+                      checked={formik.values.jobs.inspector}
                     />
                     <label className="form-check-label" htmlFor="inspector">
                       Inspector
@@ -269,9 +274,9 @@ function Project() {
                       className="form-check-input"
                       type="checkbox"
                       id="flooringInstaller"
-                      name="workers.flooringInstaller"
+                      name="jobs.flooringInstaller"
                       onChange={formik.handleChange}
-                      checked={formik.values.workers.flooringInstaller}
+                      checked={formik.values.jobs.flooringInstaller}
                     />
                     <label
                       className="form-check-label"
@@ -288,9 +293,9 @@ function Project() {
                       className="form-check-input"
                       type="checkbox"
                       id="surveyor"
-                      name="workers.surveyor"
+                      name="jobs.surveyor"
                       onChange={formik.handleChange}
-                      checked={formik.values.workers.surveyor}
+                      checked={formik.values.jobs.surveyor}
                     />
                     <label className="form-check-label" htmlFor="surveyor">
                       Surveyor
@@ -304,9 +309,9 @@ function Project() {
                       className="form-check-input"
                       type="checkbox"
                       id="brickMason"
-                      name="workers.brickMason"
+                      name="jobs.brickMason"
                       onChange={formik.handleChange}
-                      checked={formik.values.workers.brickMason}
+                      checked={formik.values.jobs.brickMason}
                     />
                     <label className="form-check-label" htmlFor="brickMason">
                       Brick Mason
@@ -320,9 +325,9 @@ function Project() {
                       className="form-check-input"
                       type="checkbox"
                       id="ironWorker"
-                      name="workers.ironWorker"
+                      name="jobs.ironWorker"
                       onChange={formik.handleChange}
-                      checked={formik.values.workers.ironWorker}
+                      checked={formik.values.jobs.ironWorker}
                     />
                     <label className="form-check-label" htmlFor="ironWorker">
                       Iron Worker
@@ -336,9 +341,9 @@ function Project() {
                       className="form-check-input"
                       type="checkbox"
                       id="craneOperator"
-                      name="workers.craneOperator"
+                      name="jobs.craneOperator"
                       onChange={formik.handleChange}
-                      checked={formik.values.workers.craneOperator}
+                      checked={formik.values.jobs.craneOperator}
                     />
                     <label className="form-check-label" htmlFor="craneOperator">
                       Crane Operator
@@ -352,9 +357,9 @@ function Project() {
                       className="form-check-input"
                       type="checkbox"
                       id="safetyManager"
-                      name="workers.safetyManager"
+                      name="jobs.safetyManager"
                       onChange={formik.handleChange}
-                      checked={formik.values.workers.safetyManager}
+                      checked={formik.values.jobs.safetyManager}
                     />
                     <label className="form-check-label" htmlFor="safetyManager">
                       Safety Manager
@@ -368,9 +373,9 @@ function Project() {
                       className="form-check-input"
                       type="checkbox"
                       id="costEstimator"
-                      name="workers.costEstimator"
+                      name="jobs.costEstimator"
                       onChange={formik.handleChange}
-                      checked={formik.values.workers.costEstimator}
+                      checked={formik.values.jobs.costEstimator}
                     />
                     <label className="form-check-label" htmlFor="costEstimator">
                       Cost Estimator
@@ -384,9 +389,9 @@ function Project() {
                       className="form-check-input"
                       type="checkbox"
                       id="manager"
-                      name="workers.manager"
+                      name="jobs.manager"
                       onChange={formik.handleChange}
-                      checked={formik.values.workers.manager}
+                      checked={formik.values.jobs.manager}
                     />
                     <label className="form-check-label" htmlFor="manager">
                       Manager

@@ -78,7 +78,7 @@ function App() {
             <Route path="/projects" element={<Project />} />
             <Route path="/projects/id" element={<ProjectData />} />
             <Route path="/my-profile" element={<Profile payload={getPayload()} />} />
-            <Route path="/requests" element={<Requests  payload={getPayload()}/>} />
+            <Route path="/requests" element={<Requests payload={getPayload()} />} />
             <Route path="/explore" element={<Explore />} />
             <Route path="/explore/id" element={<ProjectDetail />} />
           </Route>
