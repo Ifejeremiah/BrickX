@@ -1,6 +1,25 @@
 import axios from "axios";
 import _routes from "./service-routes";
 
+const token = localStorage.getItem("auth-token");
+
+axios.interceptors.request.use(function (config) {
+  if (token) config.headers["Authorization"] = `Bearer ${token}`;
+  return config;
+},
+  function (error) {
+    // if (error.response) {
+    //   if (error.response.status === 401) {
+    //     return axios_instance(config);
+    //   }
+
+    //   if (error.response.status === 'ANOTHER_STATUS_CODE') {
+    //     return Promise.reject(error.response.data);
+    //   }
+    // }
+    return Promise.reject(error);
+  })
+  ;
 
 const service = {
   setPageTitle: (component) => document.title = `BrickX - ${component}`,
@@ -25,9 +44,13 @@ const service = {
 
   handleRegisterError: (err, callback) => {
     callback("Email already in use");
-  }
+  },
 
-  
+  createProject: async (postBody) => {
+    const res = await axios.post(_routes.projects, postBody)
+    return res.data
+  },
+
 }
 
 export default service;

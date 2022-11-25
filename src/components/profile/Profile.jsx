@@ -29,7 +29,6 @@ function Profile({ payload }) {
       reviewer: {
         firstname: "Ife",
         lastname: "Jeremiah",
-        job: "Manager",
         type: "contractor",
       },
       content:
@@ -39,7 +38,6 @@ function Profile({ payload }) {
       reviewer: {
         firstname: "Ife",
         lastname: "Jeremiah",
-        job: "Manager",
         type: "contractor",
       },
       content:
@@ -49,7 +47,6 @@ function Profile({ payload }) {
       reviewer: {
         firstname: "Ife",
         lastname: "Jeremiah",
-        job: "Manager",
         type: "contractor",
       },
       content:
@@ -59,7 +56,6 @@ function Profile({ payload }) {
       reviewer: {
         firstname: "Ife",
         lastname: "Jeremiah",
-        job: "Manager",
         type: "contractor",
       },
       content:
@@ -401,7 +397,6 @@ function Profile({ payload }) {
                         {review.reviewer.firstname}&nbsp;
                         {review.reviewer.lastname}
                       </div>
-                      <div className="user-title">{review.reviewer.job}</div>
                     </div>
                     <div>
                       <div className="user-detail">{review.reviewer.type}</div>

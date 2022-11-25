@@ -218,6 +218,14 @@ function Register() {
                   <option defaultValue="">Select title</option>
                   <option value="COST_MANAGER">Cost Manager</option>
                   <option value="INSPECTOR">Inspector</option>
+                  <option value="FLOORINGINSTALLER">Floor Installer</option>
+                  <option value="SURVEYOR">Surveyor</option>
+                  <option value="BRICKMASON">Brick Manson</option>
+                  <option value="IRONWORKER">Iron Worker</option>
+                  <option value="CRANEOPERATOR">Crane Operator</option>
+                  <option value="SAFETYMANAGER">Safety Manager</option>
+                  <option value="COSTESTIMATOR">Cost Estimator</option>
+                  <option value="MANAGER">Manager</option>
                 </select>
               </div>
             </>

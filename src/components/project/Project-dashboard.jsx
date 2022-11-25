@@ -128,18 +128,14 @@ function Project() {
     },
   ]);
 
-  const jobs = [];
-
-  function onSubmit(values) {
+  async function onSubmit(values) {
+    const jobs = [];
     for (let key in values.jobs) {
-      if (values.jobs[key]) jobs.push(key);
+      if (values.jobs[key]) jobs.push(key.toUpperCase());
     }
-
     values.jobs = jobs;
     values.status = "open";
-
-    console.log(JSON.stringify(values, null, 2));
-    
+    await service.createProject(values);
     setProject([values, ...projects]);
     formik.resetForm();
   }
