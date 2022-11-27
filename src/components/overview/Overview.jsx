@@ -1,10 +1,10 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import service from "services/service";
 import "./css/Overview.sass";
 
-function Overview({ payload }) {
-  const firstName = "John";
-
+function Overview({ payload, currentUser }) {
+  const [user, setUser] = useState({});
   const isWorker = payload.role === "Worker";
 
   const projects = [
@@ -69,13 +69,24 @@ function Overview({ payload }) {
     },
   ];
 
+  useEffect(() => {
+    async function getCurrentUser() {
+      try {
+        const user = await service.getCurrentUserData();
+        setUser(user);
+        console.log(user.project);
+      } catch (error) {}
+    }
+    getCurrentUser();
+  }, []);
+
   service.setPageTitle("Overview");
   return (
     <div className="component-container" id="Overview_Main_Container">
       <div>
         <div className="con-header">
           <div className="first mb-4">
-            <h3>Welcome {firstName}</h3>
+            <h3>Welcome {user ? user.firstName : "User"}</h3>
           </div>
           <div className="second">
             <p>What would you like to do today?</p>
@@ -88,19 +99,28 @@ function Overview({ payload }) {
             <div>
               {!isWorker ? (
                 <div className="header d-flex align-items-center justify-content-between mb-5">
-                  <h3>My Projects&nbsp;({projects.length})</h3>
-                  <Link to="/projects" className="arrow-link">
-                    View all
-                    <i className="fa-solid fa-arrow-right ms-2"></i>
-                  </Link>
+                  <h3>My Projects</h3>
+
+                  {user?.project?.lenght > 0 ? (
+                    <>
+                      <Link to="/projects" className="arrow-link">
+                        View all
+                        <i className="fa-solid fa-arrow-right ms-2"></i>
+                      </Link>
+                    </>
+                  ) : null}
                 </div>
               ) : (
                 <div className="header d-flex align-items-center justify-content-between mb-5">
                   <h3>My Requests&nbsp;({requests.length})</h3>
-                  <Link to="/requests" className="arrow-link">
-                    View all
-                    <i className="fa-solid fa-arrow-right ms-2"></i>
-                  </Link>
+                  {user.project.lenght > 0 ? (
+                    <>
+                      <Link to="/requests" className="arrow-link">
+                        View all
+                        <i className="fa-solid fa-arrow-right ms-2"></i>
+                      </Link>
+                    </>
+                  ) : null}
                 </div>
               )}
             </div>
@@ -108,23 +128,29 @@ function Overview({ payload }) {
             <div>
               {!isWorker ? (
                 <div className="content">
-                  {projects.map((elem, key) => (
-                    <div className="con-card" key={key}>
-                      <div className="d-flex align-items-center justify-content-between mb-4">
-                        <div className="title">{elem.title}</div>
-                        <div className={`status ${elem.status}`}>
-                          {elem.status}
-                        </div>
-                      </div>
+                  {user.project > 0 ? (
+                    <>
+                      {user.project.map((elem, key) => (
+                        <div className="con-card" key={key}>
+                          <div className="d-flex align-items-center justify-content-between mb-4">
+                            <div className="title">{elem.title}</div>
+                            <div className={`status ${elem.status}`}>
+                              {elem.status}
+                            </div>
+                          </div>
 
-                      <div>
-                        <Link to="/projects/id" className="arrow-link">
-                          View project
-                          <i className="fa-solid fa-arrow-right ms-2"></i>
-                        </Link>
-                      </div>
-                    </div>
-                  ))}
+                          <div>
+                            <Link to="/projects/id" className="arrow-link">
+                              View project
+                              <i className="fa-solid fa-arrow-right ms-2"></i>
+                            </Link>
+                          </div>
+                        </div>
+                      ))}
+                    </>
+                  ) : (
+                    <h5 className="highlight">No Projects yet</h5>
+                  )}
                 </div>
               ) : (
                 <div className="content">
@@ -169,32 +195,38 @@ function Overview({ payload }) {
             <div className="content">
               {!isWorker ? (
                 <>
-                  {projects.map((elem, key) => (
-                    <div className="con-card" key={key}>
-                      <div className="d-flex align-items-center gap-3 mb-4">
-                        <div className="image">
-                          <img
-                            src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
-                            alt=""
-                          />
-                        </div>
-                        <div className="details">
-                          <p className="name">Zainab Sanni</p>
-                          <p className="job">Manager</p>
-                        </div>
-                      </div>
+                  {user.project > 0 ? (
+                    <>
+                      {projects.map((elem, key) => (
+                        <div className="con-card" key={key}>
+                          <div className="d-flex align-items-center gap-3 mb-4">
+                            <div className="image">
+                              <img
+                                src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+                                alt=""
+                              />
+                            </div>
+                            <div className="details">
+                              <p className="name">Zainab Sanni</p>
+                              <p className="job">Manager</p>
+                            </div>
+                          </div>
 
-                      <div>
-                        <Link
-                          to="/my-profile?search=view"
-                          className="arrow-link"
-                        >
-                          View Worker
-                          <i className="fa-solid fa-arrow-right ms-2"></i>
-                        </Link>
-                      </div>
-                    </div>
-                  ))}
+                          <div>
+                            <Link
+                              to="/my-profile?search=view"
+                              className="arrow-link"
+                            >
+                              View Worker
+                              <i className="fa-solid fa-arrow-right ms-2"></i>
+                            </Link>
+                          </div>
+                        </div>
+                      ))}
+                    </>
+                  ) : (
+                    <h5 className="highlight">No Workers yet</h5>
+                  )}
                 </>
               ) : (
                 <>

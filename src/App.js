@@ -19,9 +19,11 @@ import Login from "components/login/Login";
 import Register from "components/register/Register";
 import ProjectData from "components/project-data/Project-data";
 import Requests from "components/requests/Requests";
+import service from "services/service";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(true);
+  const [currentUser, setCurrentUser] = useState({});
 
   const token = localStorage.getItem("auth-token");
 
@@ -42,6 +44,10 @@ function App() {
     setIsAuthenticated(false);
   }
 
+  function doSetCurrentUser(user) {
+    setCurrentUser(user)
+  }
+
   useEffect(() => {
     if (token === null) setIsAuthenticated(false);
     // TO HANDLE JWT EXPIRE
@@ -58,6 +64,16 @@ function App() {
     else setIsAuthenticated(true);
   }, [token]);
 
+  useEffect(() => {
+    async function getCurrentUser() {
+      try {
+        const user = await service.getCurrentUserData();
+        doSetCurrentUser(user);
+      } catch (error) { }
+    }
+    getCurrentUser();
+  }, [token]);
+
   return (
     <Router>
       <div className={`${s.main_container}`}>
@@ -68,13 +84,13 @@ function App() {
           <Route
             element={
               !!token && isAuthenticated ? (
-                <Template logout={doLogout} payload={getPayload()} />
+                <Template logout={doLogout} payload={getPayload()} currentUser={currentUser} />
               ) : (
                 <Navigate to="/login" />
               )
             }
           >
-            <Route path="/overview" element={<Overview payload={getPayload()} />} />
+            <Route path="/overview" element={<Overview payload={getPayload()} currentUser={currentUser} />} />
             <Route path="/projects" element={<Project />} />
             <Route path="/projects/id" element={<ProjectData />} />
             <Route path="/my-profile" element={<Profile payload={getPayload()} />} />

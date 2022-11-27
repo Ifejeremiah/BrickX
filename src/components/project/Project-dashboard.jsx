@@ -16,8 +16,10 @@ function Project() {
 
   useEffect(() => {
     async function fetchProjects() {
-      const projects = await service.getAllProjects();
-      setProject(projects);
+      try {
+        const projects = await service.getAllProjects();
+        setProject(projects);
+      } catch (error) {}
     }
     fetchProjects();
   }, []);
@@ -365,7 +367,7 @@ function Project() {
               <span
                 data-bs-toggle="modal"
                 data-bs-target="#new-project-create"
-                className=""
+                className="highlight"
               >
                 Create New Project
               </span>

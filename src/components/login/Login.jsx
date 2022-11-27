@@ -19,6 +19,10 @@ function Login({ authStatus }) {
     } else callback();
   }
 
+  function refreshPage() {
+    window.location.reload();
+  }
+
   function submit(evt) {
     evt.preventDefault();
     validate(() => {
@@ -26,6 +30,7 @@ function Login({ authStatus }) {
         (res) => {
           authStatus(res.accessToken);
           navigate({ pathname: "/overview" });
+          refreshPage();
         },
         (err) => service.handleLoginError(err, setMsg)
       );

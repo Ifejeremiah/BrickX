@@ -8,7 +8,7 @@ import s from "./css/Template.module.sass";
 import "./css/Template.sass";
 import { useState } from "react";
 
-function Template({ logout, payload }) {
+function Template({ logout, payload, currentUser }) {
   const [toggle, setToggle] = useState("d-none");
 
   function doToggle() {
@@ -25,7 +25,7 @@ function Template({ logout, payload }) {
 
   return (
     <div className="template-container p-2" id="Template_Main_Container">
-      <Header logout={logout} doToggle={doToggle} />
+      <Header logout={logout} doToggle={doToggle} currentUser={currentUser}/>
 
       <div className="d-flex align-items-start">
         <div className={`${toggle} col-8 col-lg-2 d-lg-block`}>

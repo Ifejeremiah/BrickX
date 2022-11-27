@@ -38,6 +38,18 @@ const service = {
     callback("Email already in use");
   },
 
+  getPayload: () => {
+    if (token !== null) {
+      const { role, user_id } = JSON.parse(atob(token.split(".")[1]));
+      return { role, user_id };
+    }
+  },
+
+  getCurrentUserData: async () => {
+    const res = await axios.get(_routes.users)
+    return res.data
+  },
+
   createProject: async (postBody) => {
     const res = await axios.post(_routes.projects, postBody)
     return res.data

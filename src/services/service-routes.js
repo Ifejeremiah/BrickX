@@ -1,10 +1,11 @@
+const baseUrl = '/api'
 const authRoute = '/api/auth'
-const projectRoute = '/api'
 
 const _routes = {
   login: `${authRoute}/login`,
   register: `${authRoute}/register`,
-  projects: `${projectRoute}/projects`
+  projects: `${baseUrl}/projects`,
+  users: `${baseUrl}/users/my-profile`,
 }
 
 export default _routes;

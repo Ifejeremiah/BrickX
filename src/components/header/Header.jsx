@@ -1,10 +1,7 @@
 import { Link } from "react-router-dom";
 import s from "./css/Header.module.sass";
 
-function Header({logout, doToggle}) {
-  const username = "Ife Jeremiah";
-
-
+function Header({ logout, doToggle, currentUser }) {
   return (
     <div className={`${s.header_container} mb-2`}>
       <div className="d-flex align-items-center justify-content-between px-lg-5 px-4 py-3">
@@ -28,8 +25,7 @@ function Header({logout, doToggle}) {
               className={`${s.con_user_btn} d-none d-lg-flex gap-3 pointer align-items-center`}
             >
               <div className="user-profile-round d-none d-lg-flex gap-3 align-items-center">
-                {username ? <p>{username}</p> : ""}
-                <i className="fa-regular fa-user"></i>
+                {currentUser ? <p>{currentUser.email}</p> : "User"}
               </div>
 
               <div className="dropdown">
@@ -39,7 +35,11 @@ function Header({logout, doToggle}) {
                 ></div>
                 <ul className="dropdown-menu">
                   <li>
-                    <Link className="dropdown-item" to="/login" onClick={logout}>
+                    <Link
+                      className="dropdown-item"
+                      to="/login"
+                      onClick={logout}
+                    >
                       Logout
                     </Link>
                   </li>
