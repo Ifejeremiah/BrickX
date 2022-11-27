@@ -128,14 +128,16 @@ function Overview({ payload, currentUser }) {
             <div>
               {!isWorker ? (
                 <div className="content">
-                  {user.project > 0 ? (
+                  {user?.project ? (
                     <>
                       {user.project.map((elem, key) => (
                         <div className="con-card" key={key}>
                           <div className="d-flex align-items-center justify-content-between mb-4">
                             <div className="title">{elem.title}</div>
-                            <div className={`status ${elem.status}`}>
-                              {elem.status}
+                            <div
+                              className={`status ${elem.projectStatus.toLowerCase()}`}
+                            >
+                              {elem.projectStatus.toLowerCase()}
                             </div>
                           </div>
 
@@ -195,7 +197,7 @@ function Overview({ payload, currentUser }) {
             <div className="content">
               {!isWorker ? (
                 <>
-                  {user.project > 0 ? (
+                  {user?.project ? (
                     <>
                       {projects.map((elem, key) => (
                         <div className="con-card" key={key}>
