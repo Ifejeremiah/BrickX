@@ -7,126 +7,20 @@ import "./css/Project.sass";
 import { useState } from "react";
 import service from "services/service";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
 function Project() {
   service.setPageTitle("Projects");
 
-  const [projects, setProject] = useState([
-    {
-      title: "The Art of the Deal",
-      duration: "1 month",
-      start_date: "2022-11-05",
-      end_date: "2022-11-13",
-      status: "closed",
-      budget: 212,
-      workers: [
-        "inspector",
-        "flooringInstaller",
-        "surveyor",
-        "brickMason",
-        "ironWorker",
-        "craneOperator",
-        "safetyManager",
-        "costEstimator",
-        "manager",
-      ],
-    },
-    {
-      title: "The Art of the Deal",
-      duration: "1 month",
-      start_date: "2022-11-05",
-      end_date: "2022-11-13",
-      status: "open",
-      budget: 212,
-      workers: [
-        "inspector",
-        "flooringInstaller",
-        "surveyor",
-        "brickMason",
-        "ironWorker",
-        "craneOperator",
-        "safetyManager",
-        "costEstimator",
-        "manager",
-      ],
-    },
-    {
-      title: "The Art of the Deal",
-      duration: "1 month",
-      start_date: "2022-11-05",
-      end_date: "2022-11-13",
-      status: "open",
-      budget: 212,
-      workers: [
-        "inspector",
-        "flooringInstaller",
-        "surveyor",
-        "brickMason",
-        "ironWorker",
-        "craneOperator",
-        "safetyManager",
-        "costEstimator",
-        "manager",
-      ],
-    },
-    {
-      title: "The Art of the Deal",
-      duration: "1 month",
-      start_date: "2022-11-05",
-      end_date: "2022-11-13",
-      status: "closed",
-      budget: 212,
-      workers: [
-        "inspector",
-        "flooringInstaller",
-        "surveyor",
-        "brickMason",
-        "ironWorker",
-        "craneOperator",
-        "safetyManager",
-        "costEstimator",
-        "manager",
-      ],
-    },
-    {
-      title: "The Art of the Deal",
-      duration: "1 month",
-      start_date: "2022-11-05",
-      end_date: "2022-11-13",
-      status: "open",
-      budget: 212,
-      workers: [
-        "inspector",
-        "flooringInstaller",
-        "surveyor",
-        "brickMason",
-        "ironWorker",
-        "craneOperator",
-        "safetyManager",
-        "costEstimator",
-        "manager",
-      ],
-    },
-    {
-      title: "The Art of the Deal",
-      duration: "1 month",
-      start_date: "2022-11-05",
-      end_date: "2022-11-13",
-      status: "closed",
-      budget: 212,
-      workers: [
-        "inspector",
-        "flooringInstaller",
-        "surveyor",
-        "brickMason",
-        "ironWorker",
-        "craneOperator",
-        "safetyManager",
-        "costEstimator",
-        "manager",
-      ],
-    },
-  ]);
+  const [projects, setProject] = useState([]);
+
+  useEffect(() => {
+    async function fetchProjects() {
+      const projects = await service.getAllProjects();
+      setProject(projects);
+    }
+    fetchProjects();
+  }, []);
 
   async function onSubmit(values) {
     const jobs = [];
@@ -134,9 +28,9 @@ function Project() {
       if (values.jobs[key]) jobs.push(key.toUpperCase());
     }
     values.jobs = jobs;
-    values.status = "open";
+    values.projectStatus = "Open";
+    setProject([...projects, values]);
     await service.createProject(values);
-    setProject([values, ...projects]);
     formik.resetForm();
   }
 
@@ -454,12 +348,8 @@ function Project() {
                     <td>{23}</td>
                     <td>
                       <Link to="/projects/id">
-                        <div
-                          className={`status ${
-                            project.status === "open" ? "active" : ""
-                          }`}
-                        >
-                          {project.status}
+                        <div className={`status ${project.projectStatus}`}>
+                          {project.projectStatus}
                         </div>
                       </Link>
                     </td>

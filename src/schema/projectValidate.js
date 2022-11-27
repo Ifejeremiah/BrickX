@@ -8,13 +8,13 @@ const projectSchema = Yup.object().shape({
   startDate: Yup.date().required("Date to start is required"),
   budget: Yup.number()
     .required("Budget is required")
-    .min(6, "Budget must be at least 6 numbers"),
+    .min(5000, "Budget should be greater than 5000"),
 });
 
 const projectData = {
   title: "",
   duration: "",
-  startDate: new Date().toISOString().split("T")[0],
+  startDate: "",
   budget: 0,
   jobs: {
     inspector: false,

@@ -3,23 +3,15 @@ import _routes from "./service-routes";
 
 const token = localStorage.getItem("auth-token");
 
-axios.interceptors.request.use(function (config) {
-  if (token) config.headers["Authorization"] = `Bearer ${token}`;
-  return config;
-},
-  function (error) {
-    // if (error.response) {
-    //   if (error.response.status === 401) {
-    //     return axios_instance(config);
-    //   }
-
-    //   if (error.response.status === 'ANOTHER_STATUS_CODE') {
-    //     return Promise.reject(error.response.data);
-    //   }
-    // }
+axios.interceptors.request.use(
+  (config) => {
+    if (token) config.headers["Authorization"] = `Bearer ${token}`;
+    return config;
+  },
+  (error) => {
     return Promise.reject(error);
-  })
-  ;
+  }
+);
 
 const service = {
   setPageTitle: (component) => document.title = `BrickX - ${component}`,
@@ -48,6 +40,11 @@ const service = {
 
   createProject: async (postBody) => {
     const res = await axios.post(_routes.projects, postBody)
+    return res.data
+  },
+
+  getAllProjects: async () => {
+    const res = await axios.get(_routes.projects)
     return res.data
   },
 
