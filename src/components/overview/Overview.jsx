@@ -7,7 +7,7 @@ function Overview({ payload, currentUser }) {
   const [user, setUser] = useState({});
   const isWorker = payload.role === "Worker";
 
-  const projects = [
+  const [projects, setProjects] = useState([
     {
       title: "Trump Tower",
       status: "open",
@@ -36,7 +36,7 @@ function Overview({ payload, currentUser }) {
       title: "Trump Tower",
       status: "open",
     },
-  ];
+  ]);
 
   const requests = [
     {
@@ -72,22 +72,26 @@ function Overview({ payload, currentUser }) {
   useEffect(() => {
     function getCurrentUser() {
       service.getCurrentContractorUserData().then(
-        (user) => {
-          setUser(user);
-          console.log("value of current user", user);
-        },
+        (user) => setUser(user),
         (err) => {
           service.getCurrentWorkerUserData().then(
-            (user) => {
-              setUser(user);
-              console.log("value of current user", user);
-            },
+            (user) => setUser(user),
             (err) => console.log("Error getting current user ==>", err)
           );
         }
       );
     }
     getCurrentUser();
+  }, []);
+
+  useEffect(() => {
+    async function fetchProjects() {
+      try {
+        const allProjects = await service.getAllProjects();
+        setProjects(allProjects);
+      } catch (error) {}
+    }
+    fetchProjects();
   }, []);
 
   service.setPageTitle("Overview");
@@ -138,7 +142,7 @@ function Overview({ payload, currentUser }) {
             <div>
               {!isWorker ? (
                 <div className="content">
-                  {user?.project > 0 ? (
+                  {user?.project?.length > 0 ? (
                     <>
                       {user.project.map((elem, key) => (
                         <div className="con-card" key={key}>

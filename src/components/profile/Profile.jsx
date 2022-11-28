@@ -359,7 +359,7 @@ function Profile({ payload, currentUser }) {
                 <div className="col-12 col-lg-3">
                   <div className="mb-5 mb-lg-0">
                     <h3>Profession</h3>
-                    <p>{currentUser?.job}</p>
+                    <p>{currentUser?.jobName?.toLowerCase()}</p>
                   </div>
                 </div>
               </>

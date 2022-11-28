@@ -65,11 +65,16 @@ function App() {
   }, [token]);
 
   useEffect(() => {
-    async function getCurrentUser() {
-      try {
-        const user = await service.getCurrentUserData();
-        doSetCurrentUser(user);
-      } catch (error) { }
+    function getCurrentUser() {
+      service.getCurrentContractorUserData().then(
+        (user) => doSetCurrentUser(user),
+        (err) => {
+          service.getCurrentWorkerUserData().then(
+            (user) => doSetCurrentUser(user),
+            (err) => console.log("Error getting current user ==>", err)
+          );
+        }
+      );
     }
     getCurrentUser();
   }, [token]);
@@ -93,7 +98,7 @@ function App() {
             <Route path="/overview" element={<Overview payload={getPayload()} currentUser={currentUser} />} />
             <Route path="/projects" element={<Project />} />
             <Route path="/projects/id" element={<ProjectData />} />
-            <Route path="/my-profile" element={<Profile payload={getPayload()} currentUser={currentUser}/>} />
+            <Route path="/my-profile" element={<Profile payload={getPayload()} currentUser={currentUser} />} />
             <Route path="/requests" element={<Requests payload={getPayload()} />} />
             <Route path="/explore" element={<Explore />} />
             <Route path="/explore/id" element={<ProjectDetail />} />
