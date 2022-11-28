@@ -70,11 +70,22 @@ function Overview({ payload, currentUser }) {
   ];
 
   useEffect(() => {
-    async function getCurrentUser() {
-      try {
-        const user = await service.getCurrentUserData();
-        setUser(user);
-      } catch (error) {}
+    function getCurrentUser() {
+      service.getCurrentContractorUserData().then(
+        (user) => {
+          setUser(user);
+          console.log("value of current user", user);
+        },
+        (err) => {
+          service.getCurrentWorkerUserData().then(
+            (user) => {
+              setUser(user);
+              console.log("value of current user", user);
+            },
+            (err) => console.log("Error getting current user ==>", err)
+          );
+        }
+      );
     }
     getCurrentUser();
   }, []);
@@ -100,7 +111,7 @@ function Overview({ payload, currentUser }) {
                 <div className="header d-flex align-items-center justify-content-between mb-5">
                   <h3>My Projects</h3>
 
-                  {user?.project?.lenght > 0 ? (
+                  {user?.project?.length > 0 ? (
                     <>
                       <Link to="/projects" className="arrow-link">
                         View all
@@ -111,8 +122,8 @@ function Overview({ payload, currentUser }) {
                 </div>
               ) : (
                 <div className="header d-flex align-items-center justify-content-between mb-5">
-                  <h3>My Requests&nbsp;({requests.length})</h3>
-                  {user.project.lenght > 0 ? (
+                  <h3>My Requests&nbsp;({requests?.length})</h3>
+                  {user?.project?.length > 0 ? (
                     <>
                       <Link to="/requests" className="arrow-link">
                         View all

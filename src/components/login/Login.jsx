@@ -27,18 +27,23 @@ function Login({ authStatus }) {
   function submit(evt) {
     evt.preventDefault();
     validate(() => {
-      try {
-        authService.doLogin({ email, password }).then(
-          (res) => {
-            authStatus(res.accessToken);
-            navigate({ pathname: "/overview" });
-            refreshPage();
-          },
-          (err) => authService.handleLoginError(err, setMsg)
-        );
-      } catch (error) {
-        console.log('Error logging in ==>', error)
-      }
+      authService.doLoginWorker({ email, password }).then(
+        (res) => {
+          authStatus(res.accessToken);
+          navigate({ pathname: "/overview" });
+          refreshPage();
+        },
+        (err) => {
+          authService.doLoginContractor({ email, password }).then(
+            (res) => {
+              authStatus(res.accessToken);
+              navigate({ pathname: "/overview" });
+              refreshPage();
+            },
+            (err) => authService.handleLoginError(err, setMsg)
+          );
+        }
+      );
     });
   }
 

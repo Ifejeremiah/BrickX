@@ -2,8 +2,13 @@ import axios from "axios";
 import _routes from "./service-routes";
 
 const authService = {
-  doLogin: async (postBody) => {
-    const res = await axios.post(_routes.login, postBody)
+  doLoginWorker: async (postBody) => {
+    const res = await axios.post(`${_routes.login}/worker/login`, postBody)
+    return res.data
+  },
+
+  doLoginContractor: async (postBody) => {
+    const res = await axios.post(`${_routes.login}/contractor/login`, postBody)
     return res.data
   },
 

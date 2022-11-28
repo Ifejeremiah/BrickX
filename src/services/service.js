@@ -26,8 +26,13 @@ const service = {
     }
   },
 
-  getCurrentUserData: async () => {
-    const res = await axios.get(_routes.users)
+  getCurrentContractorUserData: async () => {
+    const res = await axios.get(`${_routes.users}/contractor/my-profile`)
+    return res.data
+  },
+
+  getCurrentWorkerUserData: async () => {
+    const res = await axios.get(`${_routes.users}/worker/my-profile`)
     return res.data
   },
 
