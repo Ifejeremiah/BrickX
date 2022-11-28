@@ -128,7 +128,7 @@ function Overview({ payload, currentUser }) {
             <div>
               {!isWorker ? (
                 <div className="content">
-                  {user?.project ? (
+                  {user?.project > 0 ? (
                     <>
                       {user.project.map((elem, key) => (
                         <div className="con-card" key={key}>

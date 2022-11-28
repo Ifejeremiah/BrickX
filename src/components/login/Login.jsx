@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
+import authService from "services/authService";
 import service from "services/service";
 import "./css/Login.sass";
 
@@ -26,13 +27,13 @@ function Login({ authStatus }) {
   function submit(evt) {
     evt.preventDefault();
     validate(() => {
-      service.doLogin({ email, password }).then(
+      authService.doLogin({ email, password }).then(
         (res) => {
           authStatus(res.accessToken);
           navigate({ pathname: "/overview" });
           refreshPage();
         },
-        (err) => service.handleLoginError(err, setMsg)
+        (err) => authService.handleLoginError(err, setMsg)
       );
     });
   }

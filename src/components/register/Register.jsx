@@ -3,6 +3,7 @@ import { useFormik } from "formik";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import registerValidationSchema from "schema/registerSchema";
+import authService from "services/authService";
 
 import service from "services/service";
 import "./css/Register.sass";
@@ -30,12 +31,12 @@ function Register() {
   function onSubmit(values) {
     if (values.isContractor) values.userType = "Contractor";
     else values.userType = "Worker";
-    service.doRegister(values).then(
+    authService.doRegister(values).then(
       (res) => {
         formik.resetForm();
         navigate({ pathname: "/login", search: "?__lgn=vlan" });
       },
-      (err) => service.handleRegisterError(err, setMsg)
+      (err) => authService.handleRegisterError(err, setMsg)
     );
   }
 

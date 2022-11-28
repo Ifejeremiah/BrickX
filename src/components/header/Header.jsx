@@ -25,7 +25,9 @@ function Header({ logout, doToggle, currentUser }) {
               className={`${s.con_user_btn} d-none d-lg-flex gap-3 pointer align-items-center`}
             >
               <div className="user-profile-round d-none d-lg-flex gap-3 align-items-center">
+                <Link to="/my-profile">
                 {currentUser ? <p>{currentUser.email}</p> : "User"}
+                </Link>
               </div>
 
               <div className="dropdown">

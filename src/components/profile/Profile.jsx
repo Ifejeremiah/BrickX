@@ -7,7 +7,7 @@ import service from "services/service";
 import { Link, useSearchParams } from "react-router-dom";
 import Previous from "components/previous/Previous";
 
-function Profile({ payload }) {
+function Profile({ payload, currentUser }) {
   service.setPageTitle("My Profile");
 
   const [query] = useSearchParams();
@@ -21,8 +21,6 @@ function Profile({ payload }) {
     bio: "I experiment with liquid art photography. Extended licenses and some of my best art photos available through my website link below.",
     gender: "Female",
   });
-
-  console.log(payload.role);
 
   const reviews = [
     {
@@ -95,31 +93,33 @@ function Profile({ payload }) {
           <div className="d-sm-flex align-items-center gap-3 gap-lg-4 mb-lg-4">
             <div className="user-img">
               <img
-                src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+                src="https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
                 alt=""
               />
             </div>
 
             <div className="user-data d-flex align-items-center justify-content-lg-center gap-4">
               <div className="username">
-                {user.firstName} {user.lastName}
+                {currentUser?.firstName} {currentUser?.lastName}
               </div>
 
-              {user.type &&
+              {(payload?.role === "Worker"
+                ? false
+                : payload.role.toLowerCase()) &&
               query.get("search") !== "view" &&
               query.get("select") !== "check" ? (
                 <div
                   className="user-type"
                   title="Contractor User Type - Contractor creates projects and assign jobs to workers."
                 >
-                  {user.type}
+                  {currentUser?.role}
                 </div>
               ) : null}
             </div>
           </div>
 
           <div className="user-bio">
-            <p>{user.bio}</p>
+            <p>{currentUser?.bio}</p>
           </div>
         </div>
 
@@ -190,20 +190,6 @@ function Profile({ payload }) {
                     </div>
 
                     <div className="mb-3">
-                      <label htmlFor="email" className="form-label">
-                        Email
-                      </label>
-                      <input
-                        className="form-control"
-                        id="email"
-                        name="email"
-                        type="text"
-                        onChange={formik.handleChange}
-                        value={formik.values.email}
-                      />
-                    </div>
-
-                    <div className="mb-3">
                       <label htmlFor="bio" className="form-label">
                         Bio
                       </label>
@@ -217,19 +203,21 @@ function Profile({ payload }) {
                       />
                     </div>
 
-                    <div className="mb-3">
-                      <label htmlFor="job" className="form-label">
-                        Job description
-                      </label>
-                      <input
-                        className="form-control"
-                        id="job"
-                        name="job"
-                        type="text"
-                        onChange={formik.handleChange}
-                        value={formik.values.job}
-                      />
-                    </div>
+                    {payload.role === "Worker" && (
+                      <div className="mb-3">
+                        <label htmlFor="job" className="form-label">
+                          Job description
+                        </label>
+                        <input
+                          className="form-control"
+                          id="job"
+                          name="job"
+                          type="text"
+                          onChange={formik.handleChange}
+                          value={formik.values.job}
+                        />
+                      </div>
+                    )}
 
                     <div className="mb-3">
                       <label htmlFor="gender" className="form-label">
@@ -349,28 +337,33 @@ function Profile({ payload }) {
               <div className="mb-5 mb-lg-0">
                 <h3>Full Name</h3>
                 <p>
-                  {user.firstName}&nbsp;{user.lastName}
+                  {currentUser?.firstName}&nbsp;{currentUser?.lastName}
                 </p>
               </div>
             </div>
             <div className="col-12 col-lg-3">
               <div className="mb-5 mb-lg-0">
                 <h3>Email</h3>
-                <p>{user.email}</p>
+                <p>{currentUser?.email}</p>
               </div>
             </div>
             <div className="col-12 col-lg-3">
               <div className="mb-5 mb-lg-0">
                 <h3>Gender</h3>
-                <p>{user.gender}</p>
+                <p>{currentUser?.gender}</p>
               </div>
             </div>
-            <div className="col-12 col-lg-3">
-              <div className="mb-5 mb-lg-0">
-                <h3>Profession</h3>
-                <p>{user.job}</p>
-              </div>
-            </div>
+
+            {currentUser?.role === "Worker" ? (
+              <>
+                <div className="col-12 col-lg-3">
+                  <div className="mb-5 mb-lg-0">
+                    <h3>Profession</h3>
+                    <p>{currentUser?.job}</p>
+                  </div>
+                </div>
+              </>
+            ) : null}
           </div>
         </div>
       </div>

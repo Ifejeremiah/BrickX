@@ -93,7 +93,7 @@ function App() {
             <Route path="/overview" element={<Overview payload={getPayload()} currentUser={currentUser} />} />
             <Route path="/projects" element={<Project />} />
             <Route path="/projects/id" element={<ProjectData />} />
-            <Route path="/my-profile" element={<Profile payload={getPayload()} />} />
+            <Route path="/my-profile" element={<Profile payload={getPayload()} currentUser={currentUser}/>} />
             <Route path="/requests" element={<Requests payload={getPayload()} />} />
             <Route path="/explore" element={<Explore />} />
             <Route path="/explore/id" element={<ProjectDetail />} />
