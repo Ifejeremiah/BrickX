@@ -74,7 +74,6 @@ function Overview({ payload, currentUser }) {
       try {
         const user = await service.getCurrentUserData();
         setUser(user);
-        console.log(user.project);
       } catch (error) {}
     }
     getCurrentUser();

@@ -31,13 +31,17 @@ function Register() {
   function onSubmit(values) {
     if (values.isContractor) values.userType = "Contractor";
     else values.userType = "Worker";
-    authService.doRegister(values).then(
-      (res) => {
-        formik.resetForm();
-        navigate({ pathname: "/login", search: "?__lgn=vlan" });
-      },
-      (err) => authService.handleRegisterError(err, setMsg)
-    );
+    try {
+      authService.doRegister(values).then(
+        (res) => {
+          formik.resetForm();
+          navigate({ pathname: "/login", search: "?__lgn=vlan" });
+        },
+        (err) => authService.handleRegisterError(err, setMsg)
+      );
+    } catch (error) {
+      console.log("Error registering ==>", error);
+    }
   }
 
   const formik = useFormik({
