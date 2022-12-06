@@ -31,8 +31,10 @@ function Project() {
     }
     values.jobs = jobs;
     values.projectStatus = "Open";
-    setProject([...projects, values]);
     await service.createProject(values);
+
+    const projects = await service.getAllProjects();
+    setProject([...projects]);
     formik.resetForm();
   }
 
@@ -336,20 +338,26 @@ function Project() {
                 {projects.map((project, key) => (
                   <tr key={key}>
                     <td>
-                      <Link to="/projects/id">{key + 1}</Link>
+                      <Link to={`/projects/id/${project.id}`}>{key + 1}</Link>
                     </td>
                     <td>
-                      <Link to="/projects/id">{project.title}</Link>
+                      <Link to={`/projects/id/${project.id}`}>
+                        {project.title}
+                      </Link>
                     </td>
                     <td>
-                      <Link to="/projects/id">{project.budget}</Link>
+                      <Link to={`/projects/id/${project.id}`}>
+                        {project.budget}
+                      </Link>
                     </td>
                     <td>
-                      <Link to="/projects/id">{project.duration}</Link>
+                      <Link to={`/projects/id/${project.id}`}>
+                        {project.duration}
+                      </Link>
                     </td>
                     <td>{23}</td>
                     <td>
-                      <Link to="/projects/id">
+                      <Link to={`/projects/id/${project.id}`}>
                         <div className={`status ${project.projectStatus}`}>
                           {project.projectStatus}
                         </div>

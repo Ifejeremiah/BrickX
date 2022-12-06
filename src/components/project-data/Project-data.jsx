@@ -3,22 +3,25 @@ import Previous from "components/previous/Previous";
 import { useFormik } from "formik";
 import React from "react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import service from "services/service";
 import "./css/Project-data.sass";
 
 function ProjectData() {
+  const { projectId } = useParams();
+
   const [state, setState] = useState("open");
 
-  const [project, setProject] = useState({
-    title: "Trump Tower",
-    duration: "3 Months",
-    start_date: "2022-11-05",
-    budget: 3000,
-    applicants: 40,
-  });
+  const [project, setProject] = useState({});
 
-  service.setPageTitle("Trump Tower");
+  useState(() => {
+    service.getProjectById(projectId).then(
+      (project) => setProject(project),
+      (err) => console.log("Error fetching project by ID", err)
+    );
+  }, []);
+
+  service.setPageTitle(project.title);
 
   function handleState() {
     if (state === "open") {
@@ -30,7 +33,7 @@ function ProjectData() {
 
   function onSubmit(values) {
     console.log(JSON.stringify(values, null, 2));
-    setProject(() => ({ ...values }));
+    // setProject(() => ({ ...values }));
   }
 
   const formik = useFormik({
@@ -94,11 +97,11 @@ function ProjectData() {
                     </label>
                     <input
                       id="start_date"
-                      name="start_date"
+                      name="startDate"
                       type="date"
                       className="form-control"
                       onChange={formik.handleChange}
-                      value={formik.values.start_date}
+                      value={formik.values.startDate}
                     />
                   </div>
 
@@ -156,7 +159,7 @@ function ProjectData() {
 
               <div className="con-date flex">
                 <h3>Start Date:</h3>
-                <p>{project.start_date}</p>
+                <p>{new Date(project.startDate).toString()}</p>
               </div>
 
               <div className="con-duration flex">
@@ -166,7 +169,7 @@ function ProjectData() {
 
               <div className="con-apply flex">
                 <h3>No. of Applicants:</h3>
-                <p>{project.applicants}</p>
+                <p>null</p>
               </div>
 
               <div className="d-flex align-items-center justify-content-between mt-5">
@@ -193,7 +196,10 @@ function ProjectData() {
               modalTarget="view-all-applicants"
               modalContext={
                 <div className="con-applicant">
-                  <Link to="/my-profile?search=view?select=check" data-bs-dismiss="modal">
+                  <Link
+                    to="/my-profile?search=view?select=check"
+                    data-bs-dismiss="modal"
+                  >
                     <div className="applicant-card d-flex align-items-center justify-content-between">
                       <div className="con-left">
                         <div className="con-img">

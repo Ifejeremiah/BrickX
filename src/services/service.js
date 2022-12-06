@@ -46,6 +46,11 @@ const service = {
     return res.data
   },
 
+  getProjectById: async (projectId) => {
+    const res = await axios.get(`${_routes.projects}/${projectId}`)
+    return res.data
+  },
+
 }
 
 export default service;

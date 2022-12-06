@@ -61,11 +61,9 @@ function App() {
     //     setIsAuthenticated(true);
     //   }
     // }
-    else setIsAuthenticated(true);
-  }, [token]);
+    else {
+      setIsAuthenticated(true);
 
-  useEffect(() => {
-    function getCurrentUser() {
       service.getCurrentContractorUserData().then(
         (user) => doSetCurrentUser(user),
         (err) => {
@@ -76,7 +74,6 @@ function App() {
         }
       );
     }
-    getCurrentUser();
   }, [token]);
 
   return (
@@ -97,7 +94,7 @@ function App() {
           >
             <Route path="/overview" element={<Overview payload={getPayload()} currentUser={currentUser} />} />
             <Route path="/projects" element={<Project />} />
-            <Route path="/projects/id" element={<ProjectData />} />
+            <Route path="/projects/id/:projectId" element={<ProjectData />} />
             <Route path="/my-profile" element={<Profile payload={getPayload()} currentUser={currentUser} />} />
             <Route path="/requests" element={<Requests payload={getPayload()} />} />
             <Route path="/explore" element={<Explore />} />

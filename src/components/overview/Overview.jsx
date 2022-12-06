@@ -156,7 +156,10 @@ function Overview({ payload, currentUser }) {
                           </div>
 
                           <div>
-                            <Link to="/projects/id" className="arrow-link">
+                            <Link
+                              to={`/projects/id/${elem.id}`}
+                              className="arrow-link"
+                            >
                               View project
                               <i className="fa-solid fa-arrow-right ms-2"></i>
                             </Link>
@@ -180,7 +183,10 @@ function Overview({ payload, currentUser }) {
                       </div>
 
                       <div>
-                        <Link to="/explore/id" className="arrow-link">
+                        <Link
+                          to="/explore/id?view=requests"
+                          className="arrow-link"
+                        >
                           View requests
                           <i className="fa-solid fa-arrow-right ms-2"></i>
                         </Link>
